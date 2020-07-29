@@ -3,11 +3,8 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
-import useStyles from '../theme.js';
 
 export default function NavBar() {
-  const classes = useStyles();
-
   return (
     <div>
       <AppBar position='static'>
