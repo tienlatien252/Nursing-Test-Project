@@ -9,7 +9,7 @@ export default function NavBar() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div>
       <AppBar position='static'>
         <Toolbar>
           <Button color='inherit' href='/'>Home</Button>

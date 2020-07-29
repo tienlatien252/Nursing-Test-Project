@@ -9,7 +9,7 @@ import LoginPage from './pages/LoginPage';
 export default function App() {
   return (
     <Router>
-      <div className={App}>
+      <div>
         <NavBar />
         <div>
           <Switch>

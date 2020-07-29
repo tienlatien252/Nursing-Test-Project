@@ -1,5 +1,6 @@
 import React from 'react';
-import Creators from '../components/Creators';
+import CreatorsProfiles from '../components/CreatorsProfiles.js';
+import creatorProfiles from '../content/creatorsProfiles.js';
 
 const AboutPage = () => (
     <>
@@ -7,7 +8,7 @@ const AboutPage = () => (
     <p>
         This is the about page.
     </p>
-    <Creators />
+    <CreatorsProfiles />
     </>
 );
 
