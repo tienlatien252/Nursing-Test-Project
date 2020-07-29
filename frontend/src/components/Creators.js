@@ -1,4 +1,5 @@
 import React from 'react';
+import creators from '../content/creators.js';
 
 import useStyles from '../theme.js';
 import Card from '@material-ui/core/Card';
@@ -17,16 +18,16 @@ export default function Creators() {
   return (
     <Card className={classes.root}>
       <CardHeader
-        title="Name"
+        title=""
       />
       <CardMedia
         className={classes.media}
-        image="https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img.jpg"
-        title="Image Placeholder"
+        image=""
+        title=""
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          Description.
+          
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
