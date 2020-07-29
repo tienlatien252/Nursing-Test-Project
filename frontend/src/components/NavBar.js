@@ -3,13 +3,10 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
-import useStyles from '../theme.js';
 
 export default function NavBar() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <div>
       <AppBar position='static'>
         <Toolbar>
           <Button color='inherit' href='/'>Home</Button>
