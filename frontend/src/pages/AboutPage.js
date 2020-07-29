@@ -1,4 +1,5 @@
 import React from 'react';
+import Creators from '../components/Creators';
 
 const AboutPage = () => (
     <>
@@ -6,6 +7,7 @@ const AboutPage = () => (
     <p>
         This is the about page.
     </p>
+    <Creators />
     </>
 );
 
