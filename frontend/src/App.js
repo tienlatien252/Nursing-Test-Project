@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import LoginPage from './pages/LoginPage';
+import Footnote from './components/Footnote';
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
             <Route path='/login' component={LoginPage} />
           </Switch>
         </div>
+        <Footnote />
       </div>
     </Router>
   )

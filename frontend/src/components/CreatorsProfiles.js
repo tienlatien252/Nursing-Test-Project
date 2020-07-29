@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
-import creatorsProfiles from '../content/creatorsProfiles.js';
+import creatorsProfiles from '../content/creatorsProfiles';
 
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';

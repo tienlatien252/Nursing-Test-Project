@@ -1,5 +1,5 @@
 import React from 'react';
-import CreatorsProfiles from '../components/CreatorsProfiles.js';
+import CreatorsProfiles from '../components/CreatorsProfiles';
 
 const AboutPage = () => (
     <>
