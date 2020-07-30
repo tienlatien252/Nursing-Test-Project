@@ -9,13 +9,6 @@ import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import Tooltip from "@material-ui/core/Tooltip";
-
-// @material-ui/icons
-import { Apps, CloudDownload } from "@material-ui/icons";
-
-// core components
-import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
 import Button from "components/CustomButtons/Button.js";
 
 import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js";
@@ -28,9 +21,17 @@ export default function HeaderLinks(props) {
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
         <Button
+          href="/" 
+          color="transparent"
+          className={classes.navLink}
+        >
+          Home
+        </Button>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Button
           href="/profile-page"
           color="transparent"
-          target="_blank"
           className={classes.navLink}
         >
           About Us
@@ -40,7 +41,6 @@ export default function HeaderLinks(props) {
         <Button
           href="/login-page"
           color="transparent"
-          target="_blank"
           className={classes.navLink}
         >
           Login / Signup

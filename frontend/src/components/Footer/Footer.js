@@ -37,7 +37,7 @@ export default function Footer(props) {
                 className={classes.block}
                 target="_blank"
               >
-                About us
+                Terms of Use
               </a>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
@@ -46,7 +46,7 @@ export default function Footer(props) {
                 className={classes.block}
                 target="_blank"
               >
-                GitHub
+                Privacy Policy
               </a>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
@@ -55,7 +55,7 @@ export default function Footer(props) {
                 className={classes.block}
                 target="_blank"
               >
-                Licenses
+                Contact Us
               </a>
             </ListItem>
           </List>
