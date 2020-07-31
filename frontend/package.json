@@ -1,7 +1,7 @@
 {
-  "name": "material-kit-react",
+  "name": "nursing-test",
   "version": "1.9.0",
-  "description": "Material Kit React. Coded by Creative Tim",
+  "description": "Nursing Test, created by Team Name",
   "private": true,
   "main": "src/index.js",
   "dependencies": {
