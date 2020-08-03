@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -13,11 +14,15 @@ const useStyles = makeStyles(styles);
 
 export default function HeaderLinks(props) {
   const classes = useStyles();
+
+  const { loginWithRedirect } = useAuth0();
+  const { logout } = useAuth0();
+
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
         <Button
-          href="/" 
+          href="/"
           color="transparent"
           className={classes.navLink}
         >
@@ -35,11 +40,18 @@ export default function HeaderLinks(props) {
       </ListItem>
       <ListItem className={classes.listItem}>
         <Button
-          href="/login-page"
           color="transparent"
           className={classes.navLink}
-        >
-          Log in
+          onClick={() => loginWithRedirect()}>
+          Log In
+        </Button>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Button
+          color="transparent"
+          className={classes.navLink}
+          onClick={() => logout()}>
+          Log Out
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
