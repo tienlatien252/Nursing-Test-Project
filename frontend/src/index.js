@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
-import { Router, Route, Switch } from "react-router-dom";
-import { Auth0Provider } from "@auth0/auth0-react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Auth0ProviderWithHistory from "./auth0-provider-with-history.js";
 
 import "assets/scss/material-kit-react.scss?v=1.9.0";
 
@@ -15,19 +15,15 @@ import SignupPage from "views/SignupPage/SignupPage.js";
 var hist = createBrowserHistory();
 
 ReactDOM.render(
-  <Auth0Provider
-    domain="dev-e14kaf0s.us.auth0.com"
-    clientId="BISSFueKaVtZnQ5dZOOYHXPlYB23O9w3"
-    redirectUri={window.location.origin}
-  >
-    <Router history={hist}>
-      <Switch>
-        <Route path="/" component={LandingPage} exact />
-        <Route path="/profile-page" component={ProfilePage} />
-        <Route path="/login-page" component={LoginPage} />
-        <Route path="/signup-page" component={SignupPage} />
-      </Switch>
-    </Router>
-  </Auth0Provider>,
+  <Router history={hist}>
+    <Auth0ProviderWithHistory>
+        <Switch>
+          <Route path="/" component={LandingPage} exact />
+          <Route path="/profile-page" component={ProfilePage} />
+          <Route path="/login-page" component={LoginPage} />
+          <Route path="/signup-page" component={SignupPage} />
+        </Switch>
+    </Auth0ProviderWithHistory>
+  </Router>,
   document.getElementById("root")
 );

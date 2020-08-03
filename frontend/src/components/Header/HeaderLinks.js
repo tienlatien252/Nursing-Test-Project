@@ -50,17 +50,22 @@ export default function HeaderLinks(props) {
         <Button
           color="transparent"
           className={classes.navLink}
-          onClick={() => logout()}>
+          onClick={() => logout({
+            returnTo: window.location.origin,
+          })}>
           Log Out
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
         <Button
-          href="/signup-page"
           color="transparent"
           className={classes.navLink}
-        >
-          Sign up
+          onClick={() =>
+            loginWithRedirect({
+              screen_hint: "signup",
+            })
+          }>
+          Sign Up
         </Button>
       </ListItem>
     </List>
