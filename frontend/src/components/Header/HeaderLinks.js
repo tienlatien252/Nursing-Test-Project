@@ -43,7 +43,7 @@ export default function HeaderLinks(props) {
           color="transparent"
           className={classes.navLink}
           onClick={() => loginWithRedirect()}>
-          Log In
+          Log In / Sign Up
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
@@ -54,18 +54,6 @@ export default function HeaderLinks(props) {
             returnTo: window.location.origin,
           })}>
           Log Out
-        </Button>
-      </ListItem>
-      <ListItem className={classes.listItem}>
-        <Button
-          color="transparent"
-          className={classes.navLink}
-          onClick={() =>
-            loginWithRedirect({
-              screen_hint: "signup",
-            })
-          }>
-          Sign Up
         </Button>
       </ListItem>
     </List>
