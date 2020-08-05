@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Auth0ProviderWithHistory from "./auth0-provider-with-history.js";
 
 import "assets/scss/material-kit-react.scss?v=1.9.0";
 
@@ -15,13 +14,11 @@ var hist = createBrowserHistory();
 
 ReactDOM.render(
   <Router history={hist}>
-    <Auth0ProviderWithHistory>
-        <Switch>
-          <Route path="/" component={LandingPage} exact />
-          <Route path="/profile-page" component={ProfilePage} />
-          <Route path="/login-page" component={LoginPage} />
-        </Switch>
-    </Auth0ProviderWithHistory>
+    <Switch>
+      <Route path="/" component={LandingPage} exact />
+      <Route path="/profile-page" component={ProfilePage} />
+      <Route path="/login-page" component={LoginPage} />
+    </Switch>
   </Router>,
   document.getElementById("root")
 );
