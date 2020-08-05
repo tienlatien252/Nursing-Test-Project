@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { auth } from "../../firebase";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -29,14 +30,25 @@ export default function PasswordResetPage(props) {
     const [email, setEmail] = useState("");
     const [emailHasBeenSent, setEmailHasBeenSent] = useState(false);
     const [error, setError] = useState(null);
+
     const onChangeHandler = event => {
         const { name, value } = event.currentTarget;
         if (name === "userEmail") {
             setEmail(value);
         }
     };
+
     const sendResetEmail = event => {
         event.preventDefault();
+        auth
+            .sendPasswordResetEmail(email)
+            .then(() => {
+                setEmailHasBeenSent(true);
+                setTimeout(() => { setEmailHasBeenSent(false) }, 3000);
+            })
+            .catch(() => {
+                setError("Error resetting password");
+            });
     };
 
     return (
@@ -78,6 +90,7 @@ export default function PasswordResetPage(props) {
                                             <CustomInput
                                                 labelText="Email"
                                                 id="email"
+                                                name="userEmail"
                                                 value={email}
                                                 onChange={onChangeHandler}
                                                 formControlProps={{
@@ -92,7 +105,7 @@ export default function PasswordResetPage(props) {
                                                     )
                                                 }}
                                             />
-                                            <Button simple color="primary" size="lg">
+                                            <Button simple color="primary" size="lg" onclick={(event) => { sendResetEmail() }}>
                                                 Send me a reset link
                     </Button>
                                         </div>

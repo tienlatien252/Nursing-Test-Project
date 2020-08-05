@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import React from "react";
+import { auth } from "../../firebase";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -46,7 +47,9 @@ export default function HeaderLinks(props) {
       <ListItem className={classes.listItem}>
         <Button
           color="transparent"
-          className={classes.navLink}>
+          className={classes.navLink}
+          onClick = {() => {auth.signOut()}}
+        >
           Log Out
         </Button>
       </ListItem>

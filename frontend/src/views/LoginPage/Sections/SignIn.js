@@ -14,9 +14,8 @@ import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
 const useStyles = makeStyles(styles);
 
-export default function SignIn(props) {
+export default function SignIn() {
     const classes = useStyles();
-    const { ...rest } = props;
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -44,13 +43,14 @@ export default function SignIn(props) {
     return (
         <>
             {error !== null && <div>{error}</div>}
-            <Button color="primary" size="lg" simple onClick={signInWithGoogle}>
+            <Button color="primary" size="lg" simple onClick = {signInWithGoogle()}>
                 Sign in with Google
                           </Button>
             <p className={classes.divider}>Or</p>
             <CustomInput
                 labelText="Email"
                 id="email"
+                name="userEmail"
                 value={email}
                 onChange={(event) => onChangeHandler(event)}
                 formControlProps={{
@@ -68,6 +68,7 @@ export default function SignIn(props) {
             <CustomInput
                 labelText="Password"
                 id="pass"
+                name="userPassword"
                 value={password}
                 onChange={(event) => onChangeHandler(event)}
                 formControlProps={{
