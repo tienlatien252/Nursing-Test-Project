@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { signInWithGoogle } from "../../../firebase";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -43,7 +44,7 @@ export default function SignIn(props) {
     return (
         <>
             {error !== null && <div>{error}</div>}
-            <Button color="primary" size="lg" simple>
+            <Button color="primary" size="lg" simple onClick={signInWithGoogle}>
                 Sign up with Google
                           </Button>
             <p className={classes.divider}>Or</p>

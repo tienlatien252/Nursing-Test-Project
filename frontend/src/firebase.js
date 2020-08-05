@@ -13,6 +13,11 @@ const firebaseConfig = {
     measurementId: "G-EDJMGS35CL"
 };
 
+const provider = new firebase.auth.GoogleAuthProvider();
+
 firebase.initializeApp(firebaseConfig);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+export const signInWithGoogle = () => {
+    auth.signInWithPopup(provider);
+};
