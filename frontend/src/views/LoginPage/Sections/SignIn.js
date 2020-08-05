@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "@reach/router";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -85,9 +84,9 @@ export default function SignIn(props) {
                 Log In
                     </Button>
             <div>
-                <Link to="passwordReset">
+                <Button color="primary" simple href="/password-reset-page">
                     Don't remember your password?
-          </Link>
+                          </Button>
             </div>
         </>
     )

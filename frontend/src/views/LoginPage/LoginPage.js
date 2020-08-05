@@ -10,7 +10,6 @@ import GridItem from "components/Grid/GridItem.js";
 import CustomTabs from "components/CustomTabs/CustomTabs.js";
 import SignIn from "./Sections/SignIn.js";
 import SignUp from "./Sections/SignUp.js";
-import PasswordReset from './Sections/PasswordReset.js';
 
 import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
