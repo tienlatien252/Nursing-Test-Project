@@ -1,77 +1,94 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link } from "@reach/router";
+// @material-ui/core components
+import { makeStyles } from "@material-ui/core/styles";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Icon from "@material-ui/core/Icon";
+// @material-ui/icons
+import Email from "@material-ui/icons/Email";
+// core components
+import Button from "components/CustomButtons/Button.js";
+import CustomInput from "components/CustomInput/CustomInput.js";
 
-const SignIn = () => {
+import styles from "assets/jss/material-kit-react/views/loginPage.js";
+
+const useStyles = makeStyles(styles);
+
+export default function SignIn(props) {
+    const classes = useStyles();
+    const { ...rest } = props;
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
-    const signInWithEmailAndPasswordHandler = 
-            (event,email, password) => {
-                event.preventDefault();
+    const signInWithEmailAndPasswordHandler =
+        (event, email, password) => {
+            event.preventDefault();
+        };
+
+    const onChangeHandler = (event) => {
+        const { name, value } = event.currentTarget;
+
+        if (name === 'userEmail') {
+            setEmail(value);
+        }
+        else if (name === 'userPassword') {
+            setPassword(value);
+        }
     };
 
-      const onChangeHandler = (event) => {
-          const {name, value} = event.currentTarget;
-
-          if(name === 'userEmail') {
-              setEmail(value);
-          }
-          else if(name === 'userPassword'){
-            setPassword(value);
-          }
-      };
-
-  return (
-    <div className="mt-8">
-      <h1 className="text-3xl mb-2 text-center font-bold">Sign In</h1>
-      <div className="border border-blue-400 mx-auto w-11/12 md:w-2/4 rounded py-8 px-4 md:px-8">
-        {error !== null && <div className = "py-4 bg-red-600 w-full text-white text-center mb-3">{error}</div>}
-        <form className="">
-          <label htmlFor="userEmail" className="block">
-            Email:
-          </label>
-          <input
-            type="email"
-            className="my-1 p-1 w-full"
-            name="userEmail"
-            value = {email}
-            placeholder="E.g: faruq123@gmail.com"
-            id="userEmail"
-            onChange = {(event) => onChangeHandler(event)}
-          />
-          <label htmlFor="userPassword" className="block">
-            Password:
-          </label>
-          <input
-            type="password"
-            className="mt-1 mb-3 p-1 w-full"
-            name="userPassword"
-            value = {password}
-            placeholder="Your Password"
-            id="userPassword"
-            onChange = {(event) => onChangeHandler(event)}
-          />
-          <button className="bg-green-400 hover:bg-green-500 w-full py-2 text-white" onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}>
-            Sign in
-          </button>
-        </form>
-        <p className="text-center my-3">or</p>
-        <button
-          className="bg-red-500 hover:bg-red-600 w-full py-2 text-white">
-          Sign in with Google
-        </button>
-        <p className="text-center my-3">
-          Don't have an account?{" "}
-          <Link to="signUp" className="text-blue-500 hover:text-blue-600">
-            Sign up here
-          </Link>{" "}
-          <br />{" "}
-          <Link to = "passwordReset" className="text-blue-500 hover:text-blue-600">
-            Forgot Password?
+    return (
+        <>
+            {error !== null && <div>{error}</div>}
+            <Button color="primary" size="lg" simple>
+                Sign in with Google
+                          </Button>
+            <p className={classes.divider}>Or</p>
+            <CustomInput
+                labelText="Email"
+                id="email"
+                value={email}
+                onChange={(event) => onChangeHandler(event)}
+                formControlProps={{
+                    fullWidth: true
+                }}
+                inputProps={{
+                    type: "email",
+                    endAdornment: (
+                        <InputAdornment position="end">
+                            <Email className={classes.inputIconsColor} />
+                        </InputAdornment>
+                    )
+                }}
+            />
+            <CustomInput
+                labelText="Password"
+                id="pass"
+                value={password}
+                onChange={(event) => onChangeHandler(event)}
+                formControlProps={{
+                    fullWidth: true
+                }}
+                inputProps={{
+                    type: "password",
+                    endAdornment: (
+                        <InputAdornment position="end">
+                            <Icon className={classes.inputIconsColor}>
+                                lock_outline
+                            </Icon>
+                        </InputAdornment>
+                    ),
+                    autoComplete: "off"
+                }}
+            />
+            <Button simple color="primary" size="lg" onClick={(event) => { signInWithEmailAndPasswordHandler(event, email, password) }}>
+                Log In
+                    </Button>
+            <div>
+                <Link to="passwordReset">
+                    Don't remember your password?
           </Link>
-        </p>
-      </div>
-    </div>
-  );
-};
-export default SignIn;
+            </div>
+        </>
+    )
+}
