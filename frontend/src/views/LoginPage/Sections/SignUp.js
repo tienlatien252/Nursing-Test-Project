@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { signInWithGoogle } from "../../../firebase";
+import { auth, generateUserDocument, signInWithGoogle } from "../../../firebase";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -23,8 +23,16 @@ export default function SignIn(props) {
     const [displayName, setDisplayName] = useState("");
     const [error, setError] = useState(null);
 
-    const createUserWithEmailAndPasswordHandler = (event, email, password) => {
+    const createUserWithEmailAndPasswordHandler = async (event, email, password) => {
         event.preventDefault();
+        try {
+            const { user } = await auth.createUserWithEmailAndPassword(email, password);
+            generateUserDocument(user, { displayName });
+        }
+        catch (error) {
+            setError('Error signing up with email and password.');
+        }
+
         setEmail("");
         setPassword("");
         setDisplayName("");

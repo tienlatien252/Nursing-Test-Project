@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { signInWithGoogle } from "../../../firebase";
+import { auth, signInWithGoogle } from "../../../firebase";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -21,10 +21,14 @@ export default function SignIn(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
-    const signInWithEmailAndPasswordHandler =
-        (event, email, password) => {
-            event.preventDefault();
-        };
+
+    const signInWithEmailAndPasswordHandler = (event, email, password) => {
+        event.preventDefault();
+        auth.signInWithEmailAndPassword(email, password).catch(error => {
+            setError("Error signing in with password and email.");
+            console.error("Error signing in with password and email", error);
+        });
+    };
 
     const onChangeHandler = (event) => {
         const { name, value } = event.currentTarget;
