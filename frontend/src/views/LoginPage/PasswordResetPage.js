@@ -105,7 +105,7 @@ export default function PasswordResetPage(props) {
                                                     )
                                                 }}
                                             />
-                                            <Button simple color="primary" size="lg" onclick={(event) => { sendResetEmail() }}>
+                                            <Button simple color="primary" size="lg" onclick={sendResetEmail}>
                                                 Send me a reset link
                     </Button>
                                         </div>

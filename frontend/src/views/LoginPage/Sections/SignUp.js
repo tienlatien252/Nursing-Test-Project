@@ -65,7 +65,7 @@ export default function SignUp() {
                     fullWidth: true
                 }}
                 inputProps={{
-                    type: "email",
+                    type: "text",
                     endAdornment: (
                         <InputAdornment position="end">
                             <Email className={classes.inputIconsColor} />
