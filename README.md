@@ -37,7 +37,7 @@ Read [this](https://docs.docker.com/engine/reference/builder/) for more informat
 
 1. #### Run the image
 
-    $ docker run --name backend-node -p 5000:3000 -d backend
+    $ docker run --rm --name backend-node -p 5000:3000 -d backend
 
 ### How to run frontend React.js application using Docker (http//:localhost:3000)
 
@@ -47,4 +47,4 @@ Read [this](https://docs.docker.com/engine/reference/builder/) for more informat
 
 1. #### Run the image
 
-    $ docker run --name frontend-react -p 3000:3000 -d frontend
+    $ docker run -it --rm --name frontend-react -p 3000:3000 -d frontend
