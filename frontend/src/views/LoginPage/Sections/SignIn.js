@@ -43,7 +43,7 @@ export default function SignIn() {
     return (
         <>
             {error !== null && <div>{error}</div>}
-            <Button color="primary" size="lg" simple onClick = {signInWithGoogle()}>
+            <Button color="primary" size="lg" simple onClick = {signInWithGoogle}>
                 Sign in with Google
                           </Button>
             <p className={classes.divider}>Or</p>

@@ -3,14 +3,14 @@ import "firebase/auth";
 import "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDPIYDHrtQ5MPsjSXOM9o5t-_UCc8HUj1I",
-    authDomain: "iron-entropy-285002.firebaseapp.com",
-    databaseURL: "https://iron-entropy-285002.firebaseio.com",
-    projectId: "iron-entropy-285002",
-    storageBucket: "iron-entropy-285002.appspot.com",
-    messagingSenderId: "126759132510",
-    appId: "1:126759132510:web:5f7f5d8705e178f98503cf",
-    measurementId: "G-EDJMGS35CL"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_PROJECT_ID + ".firebaseapp.com",
+    databaseURL: "https://" + process.env.REACT_APP_PROJECT_ID + ".firebaseio.com",
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_PROJECT_ID + ".appspot.com",
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID
 };
 
 const provider = new firebase.auth.GoogleAuthProvider();
@@ -20,6 +20,7 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 export const signInWithGoogle = () => {
+    console.log(process.env.REACT_APP_API_KEY)
     auth.signInWithPopup(provider);
 };
 
