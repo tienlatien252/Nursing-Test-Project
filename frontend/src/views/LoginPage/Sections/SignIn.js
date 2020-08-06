@@ -43,7 +43,7 @@ export default function SignIn() {
     return (
         <>
             {error !== null && <div>{error}</div>}
-            <Button color="primary" size="lg" simple onClick = {signInWithGoogle}>
+            <Button color="primary" size="lg" simple onClick={signInWithGoogle}>
                 Sign in with Google
                           </Button>
             <p className={classes.divider}>Or</p>
@@ -89,11 +89,9 @@ export default function SignIn() {
             <Button simple color="primary" size="lg" onClick={(event) => { signInWithEmailAndPasswordHandler(event, email, password) }}>
                 Log In
                     </Button>
-            <div>
-                <Button color="primary" simple href="/password-reset-page">
-                    Don't remember your password?
+            <Button color="primary" simple href="/password-reset-page">
+                Don't remember your password?
                           </Button>
-            </div>
         </>
     )
 }

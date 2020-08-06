@@ -31,6 +31,7 @@ export default function LandingPage(props) {
     <div>
       <Header
         color="transparent"
+        brand="Nursing Test"
         routes={dashboardRoutes} 
         rightLinks={<HeaderLinks />}
         fixed

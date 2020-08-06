@@ -118,8 +118,6 @@ export default function SignUp() {
             }}>
                 Sign Up
                     </Button>
-            <div>
-            </div>
         </>
     )
 }

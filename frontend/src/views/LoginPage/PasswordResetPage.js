@@ -56,6 +56,7 @@ export default function PasswordResetPage(props) {
             <Header
                 absolute
                 color="transparent"
+                brand="Nursing Test"
                 rightLinks={<HeaderLinks />}
                 {...rest}
             />
