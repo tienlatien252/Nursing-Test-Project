@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import React from "react";
+import { auth } from "../../firebase";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -13,11 +14,12 @@ const useStyles = makeStyles(styles);
 
 export default function HeaderLinks(props) {
   const classes = useStyles();
+
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
         <Button
-          href="/" 
+          href="/"
           color="transparent"
           className={classes.navLink}
         >
@@ -39,16 +41,16 @@ export default function HeaderLinks(props) {
           color="transparent"
           className={classes.navLink}
         >
-          Log in
+          Log In / Sign Up
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
         <Button
-          href="/signup-page"
           color="transparent"
           className={classes.navLink}
+          onClick = {() => {auth.signOut()}}
         >
-          Sign up
+          Log Out
         </Button>
       </ListItem>
     </List>
