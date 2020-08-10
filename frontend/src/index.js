@@ -11,6 +11,8 @@ import LandingPage from "views/LandingPage/LandingPage.js";
 import AboutPage from "views/AboutPage/AboutPage.js";
 import LoginPage from "views/LoginPage/LoginPage.js";
 import ProfilePage from "views/ProfilePage/ProfilePage.js";
+import PurchasePage from "views/PurchasePage/PurchasePage.js";
+import TestPage from "views/TestPage/TestPage.js";
 import PasswordResetPage from "views/LoginPage/PasswordResetPage.js";
 
 ReactDOM.render(
@@ -21,6 +23,8 @@ ReactDOM.render(
         <Route path="/about" component={AboutPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/profile" component={ProfilePage} />
+        <Route path="/purchases" component={PurchasePage} />
+        <Route path="/tests" component={TestPage} />
         <Route path="/password-reset" component={PasswordResetPage} />
       </Switch>
     </UserProvider>

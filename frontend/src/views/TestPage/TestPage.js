@@ -32,7 +32,7 @@ export default function AboutPage(props) {
             <Parallax small filter image={require("assets/img/profile-bg.jpg")} />
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div className={classes.container}>
-                    <p>This is the profile page.</p>
+                    <p>This is the tests page.</p>
                 </div>
             </div>
             <Footer />
