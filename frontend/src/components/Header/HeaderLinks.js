@@ -67,44 +67,46 @@ export default function HeaderLinks() {
         </List>
       )
     } else {
-      <List className={classes.list}>
-        <ListItem className={classes.listItem}>
-          <Button
-            href="/"
-            color="transparent"
-            className={classes.navLink}
-          >
-            Home
+      return (
+        <List className={classes.list}>
+          <ListItem className={classes.listItem}>
+            <Button
+              href="/"
+              color="transparent"
+              className={classes.navLink}
+            >
+              Home
         </Button>
-        </ListItem>
-        <ListItem className={classes.listItem}>
-          <Button
-            href="/purchases"
-            color="transparent"
-            className={classes.navLink}
-          >
-            Purchase
+          </ListItem>
+          <ListItem className={classes.listItem}>
+            <Button
+              href="/purchases"
+              color="transparent"
+              className={classes.navLink}
+            >
+              Purchase
         </Button>
-        </ListItem>
-        <ListItem className={classes.listItem}>
-          <Button
-            href="/about"
-            color="transparent"
-            className={classes.navLink}
-          >
-            About Us
+          </ListItem>
+          <ListItem className={classes.listItem}>
+            <Button
+              href="/about"
+              color="transparent"
+              className={classes.navLink}
+            >
+              About Us
         </Button>
-        </ListItem>
-        <ListItem className={classes.listItem}>
-          <Button
-            href="/login"
-            color="transparent"
-            className={classes.navLink}
-          >
-            Log In / Sign Up
+          </ListItem>
+          <ListItem className={classes.listItem}>
+            <Button
+              href="/login"
+              color="transparent"
+              className={classes.navLink}
+            >
+              Log In / Sign Up
         </Button>
-        </ListItem>
-      </List>
+          </ListItem>
+        </List>
+      )
     }
   });
 }
