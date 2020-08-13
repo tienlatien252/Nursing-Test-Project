@@ -12,7 +12,10 @@ export default function UserProvider(props) {
                 const user = await generateUserDocument(userAuth);
                 setUser(user);
             });
-            // console.log(user)
+            console.log("user is "+user)
+            console.log("user is undefined: "+(user === undefined))
+            console.log("user is null: "+(user === null))
+            console.log("user is either undefined or null: "+(user === undefined || user === null))
         }
         asyncFunction();
     });

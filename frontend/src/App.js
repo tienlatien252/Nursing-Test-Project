@@ -22,14 +22,14 @@ export default function App() {
                     <Route path="/" component={LandingPage} exact />
                     <Route path="/about" component={AboutPage} />
                     <Route path="/login" render={() => (
-                        (user!=='undefined' || user!==null) ? <Redirect to='/' /> : <LoginPage />
+                        (user === undefined || user === null) ? <LoginPage /> : <Redirect to='/' />
                     )} />
                     <Route path="/profile" render={() => (
-                        (user!=='undefined' || user!==null) ? <ProfilePage /> : <Redirect to='/login' />
+                        (user === undefined || user === null) ? <Redirect to='/login' /> : <ProfilePage />
                     )} />
                     <Route path="/purchases" component={PurchasePage} />
                     <Route path="/tests" render={() => (
-                        (user!=='undefined' || user!==null) ? <TestPage /> : <Redirect to='/login' />
+                        (user === undefined || user === null) ? <Redirect to='/login' /> : <TestPage />
                     )} />
                     <Route path="/password-reset" component={PasswordResetPage} />
                 </Switch>
