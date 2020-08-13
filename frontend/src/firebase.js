@@ -12,16 +12,29 @@ const firebaseConfig = {
     appId: process.env.REACT_APP_APP_ID,
     measurementId: process.env.REACT_APP_MEASUREMENT_ID
 };
-
-const provider = new firebase.auth.GoogleAuthProvider();
-
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
+const provider = new firebase.auth.GoogleAuthProvider();
 export const signInWithGoogle = () => {
     console.log(process.env.REACT_APP_API_KEY)
     auth.signInWithPopup(provider);
+};
+
+const getUserDocument = async uid => {
+    if (!uid) return null;
+    try {
+        const userDocument = await firestore.doc(`users/${uid}`).get();
+        return {
+            uid,
+            ...userDocument.data()
+        };
+    } catch (error) {
+        console.error("Error fetching user", error);
+    }
 };
 
 export const generateUserDocument = async (user, additionalData) => {
@@ -41,4 +54,5 @@ export const generateUserDocument = async (user, additionalData) => {
             console.error("Error creating user document", error);
         }
     }
+    return getUserDocument(user.uid);
 }

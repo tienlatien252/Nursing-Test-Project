@@ -47,7 +47,6 @@ export default function SignIn() {
         }
     });
 
-
     return (
         <>
             {error !== null && <div>{error}</div>}
