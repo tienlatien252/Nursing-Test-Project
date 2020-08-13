@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { auth, signInWithGoogle } from "../../../firebase";
-import history from "../../../utils/history";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -40,12 +39,6 @@ export default function SignIn() {
             setPassword(value);
         }
     };
-
-    auth.onAuthStateChanged(function (user) {
-        if (user) {
-            history.push('/');
-        }
-    });
 
     return (
         <>

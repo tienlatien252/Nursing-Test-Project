@@ -1,6 +1,4 @@
 import React from "react";
-import history from "../../utils/history";
-import { auth } from "../../firebase";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -18,12 +16,6 @@ const useStyles = makeStyles(styles);
 export default function AboutPage(props) {
     const classes = useStyles();
     const { ...rest } = props;
-
-    auth.onAuthStateChanged(function (user) {
-        if (!user) {
-            history.push('/login');
-        }
-    });
 
     return (
         <div>
