@@ -19,46 +19,7 @@ export default function HeaderLinks() {
   const user = useContext(UserContext);
 
   return (
-    !user ?
-      <List className={classes.list}>
-        <ListItem className={classes.listItem}>
-          <Button
-            href="/"
-            color="transparent"
-            className={classes.navLink}
-          >
-            Home
-</Button>
-        </ListItem>
-        <ListItem className={classes.listItem}>
-          <Button
-            href="/purchases"
-            color="transparent"
-            className={classes.navLink}
-          >
-            Purchase
-</Button>
-        </ListItem>
-        <ListItem className={classes.listItem}>
-          <Button
-            href="/about"
-            color="transparent"
-            className={classes.navLink}
-          >
-            About Us
-</Button>
-        </ListItem>
-        <ListItem className={classes.listItem}>
-          <Button
-            href="/login"
-            color="transparent"
-            className={classes.navLink}
-          >
-            Log In / Sign Up
-</Button>
-        </ListItem>
-      </List>
-      :
+    (user !== 'undefined' || user !== null) ?
       <List className={classes.list}>
         <ListItem className={classes.listItem}>
           <Button
@@ -103,6 +64,45 @@ export default function HeaderLinks() {
             onClick={() => { auth.signOut() }}
           >
             Log Out
+</Button>
+        </ListItem>
+      </List>
+      :
+      <List className={classes.list}>
+        <ListItem className={classes.listItem}>
+          <Button
+            href="/"
+            color="transparent"
+            className={classes.navLink}
+          >
+            Home
+</Button>
+        </ListItem>
+        <ListItem className={classes.listItem}>
+          <Button
+            href="/purchases"
+            color="transparent"
+            className={classes.navLink}
+          >
+            Purchase
+</Button>
+        </ListItem>
+        <ListItem className={classes.listItem}>
+          <Button
+            href="/about"
+            color="transparent"
+            className={classes.navLink}
+          >
+            About Us
+</Button>
+        </ListItem>
+        <ListItem className={classes.listItem}>
+          <Button
+            href="/login"
+            color="transparent"
+            className={classes.navLink}
+          >
+            Log In / Sign Up
 </Button>
         </ListItem>
       </List>

@@ -12,6 +12,7 @@ export default function UserProvider(props) {
                 const user = await generateUserDocument(userAuth);
                 setUser(user);
             });
+            // console.log(user)
         }
         asyncFunction();
     });
