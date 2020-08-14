@@ -38,7 +38,7 @@ const getUserDocument = async uid => {
 };
 
 export const generateUserDocument = async (user, additionalData) => {
-    if (!user) return;
+    if (!user) return null;
     const userRef = firestore.doc(`users/${user.uid}`);
     const snapshot = await userRef.get();
     if (!snapshot.exists) {

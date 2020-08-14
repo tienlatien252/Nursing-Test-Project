@@ -16,10 +16,10 @@ const useStyles = makeStyles(styles);
 export default function HeaderLinks() {
   const classes = useStyles();
 
-  const user = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   return (
-    (user === undefined || user === null) ?
+    user === null ?
       <List className={classes.list}>
         <ListItem className={classes.listItem}>
           <Button

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { auth, generateUserDocument } from "firebase.js";
 import { UserContext } from "UserContext.js";
@@ -18,27 +18,30 @@ import "assets/scss/material-kit-react.scss?v=1.9.0";
 export default function App() {
     const [user, setUser] = useState(null);
 
+    const value = useMemo(() => ({ user, setUser }), [user, setUser]);
+
     auth.onAuthStateChanged(async userAuth => {
         const user = await generateUserDocument(userAuth);
         setUser(user);
     });
+    console.log(user === null);
 
     return (
         <Router history={history}>
             <Switch>
-                <UserContext.Provider value={user}>
+                <UserContext.Provider value={value}>
                     <Route path="/" component={LandingPage} exact />
                     <Route path="/about" component={AboutPage} />
                     <Route path="/login" render={() => (
-                        (user === undefined || user === null) ? <LoginPage /> : <Redirect to='/'/>
+                        user === null ? <LoginPage /> : <Redirect to='/'/>
                     )}
                     />
                     <Route path="/profile" render={() => (
-                        (user === undefined || user === null) ? <Redirect to='/login' /> : <ProfilePage />
+                        value.user === null ? <Redirect to='/login' /> : <ProfilePage />
                     )} />
                     <Route path="/purchases" component={PurchasePage} />
                     <Route path="/tests" render={() => (
-                        (user === undefined || user === null) ? <Redirect to='/login' /> : <TestPage />
+                        user === null ? <Redirect to='/login' /> : <TestPage />
                     )} />
                     <Route path="/password-reset" component={PasswordResetPage} />
                 </UserContext.Provider>
