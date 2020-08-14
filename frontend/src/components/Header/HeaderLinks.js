@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import React, { useContext } from "react";
-import { auth } from "../../firebase";
-import { UserContext } from "../../providers/UserProvider";
+import { auth } from "firebase.js";
+import { UserContext } from "UserContext.js";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";

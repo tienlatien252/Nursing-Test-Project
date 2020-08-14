@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { auth } from "../../firebase";
+import { auth } from "firebase.js";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
