@@ -1,22 +1,22 @@
 /*eslint-disable*/
 import React, { useContext } from "react";
 import { auth } from "firebase.js";
-import { UserContext } from "UserContext.js";
+import { UserContext } from "utils/UserProvider";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import Button from "components/CustomButtons/Button.js";
+import Button from "components/CustomButtons/Button";
 
-import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js";
+import styles from "assets/jss/material-kit-react/components/headerLinksStyle";
 
 const useStyles = makeStyles(styles);
 
 export default function HeaderLinks() {
   const classes = useStyles();
 
-  const { user } = useContext(UserContext);
+  const user = useContext(UserContext);
 
   return (
     user === null ?

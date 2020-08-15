@@ -7,10 +7,10 @@ import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 import Email from "@material-ui/icons/Email";
 // core components
-import Button from "components/CustomButtons/Button.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
+import Button from "components/CustomButtons/Button";
+import CustomInput from "components/CustomInput/CustomInput";
 
-import styles from "assets/jss/material-kit-react/views/loginPage.js";
+import styles from "assets/jss/material-kit-react/views/loginPage";
 
 const useStyles = makeStyles(styles);
 

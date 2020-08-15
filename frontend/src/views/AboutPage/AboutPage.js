@@ -4,14 +4,14 @@ import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // core components
-import Header from "components/Header/Header.js";
-import Footer from "components/Footer/Footer.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import Parallax from "components/Parallax/Parallax.js";
-import TeamSection from "./Sections/TeamSection.js";
-import WorkSection from "./Sections/WorkSection.js";
+import Header from "components/Header/Header";
+import Footer from "components/Footer/Footer";
+import HeaderLinks from "components/Header/HeaderLinks";
+import Parallax from "components/Parallax/Parallax";
+import TeamSection from "./Sections/TeamSection";
+import WorkSection from "./Sections/WorkSection";
 
-import styles from "assets/jss/material-kit-react/views/aboutPage.js";
+import styles from "assets/jss/material-kit-react/views/aboutPage";
 
 const useStyles = makeStyles(styles);
 

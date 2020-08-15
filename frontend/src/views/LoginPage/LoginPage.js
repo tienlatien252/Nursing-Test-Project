@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Redirect } from "react-router-dom";
+import { UserContext } from "utils/UserProvider";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // core components
-import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import Footer from "components/Footer/Footer.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import CustomTabs from "components/CustomTabs/CustomTabs.js";
-import SignIn from "./Sections/SignIn.js";
-import SignUp from "./Sections/SignUp.js";
+import Header from "components/Header/Header";
+import HeaderLinks from "components/Header/HeaderLinks";
+import Footer from "components/Footer/Footer";
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
+import CustomTabs from "components/CustomTabs/CustomTabs";
+import SignIn from "./Sections/SignIn";
+import SignUp from "./Sections/SignUp";
 
-import styles from "assets/jss/material-kit-react/views/loginPage.js";
+import styles from "assets/jss/material-kit-react/views/loginPage";
 
 import image from "assets/img/bg7.jpg";
 
@@ -20,6 +22,11 @@ const useStyles = makeStyles(styles);
 export default function LoginPage(props) {
   const classes = useStyles();
   const { ...rest } = props;
+
+  const user = useContext(UserContext);
+  if (user) {
+    return <Redirect to="/" />
+  }
 
   return (
     <div>
