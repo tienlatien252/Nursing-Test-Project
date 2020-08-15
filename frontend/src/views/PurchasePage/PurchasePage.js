@@ -16,7 +16,6 @@ const useStyles = makeStyles(styles);
 export default function AboutPage(props) {
     const classes = useStyles();
     const { ...rest } = props;
-
     return (
         <div>
             <Header
@@ -33,7 +32,7 @@ export default function AboutPage(props) {
             <Parallax small filter image={require("assets/img/profile-bg.jpg")} />
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div className={classes.container}>
-                    <p>This is the profile page.</p>
+                    <p>This is the purchases page.</p>
                 </div>
             </div>
             <Footer />

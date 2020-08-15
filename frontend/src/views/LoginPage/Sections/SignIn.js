@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { auth, signInWithGoogle } from "../../../firebase";
+import { auth, signInWithGoogle } from "firebase.js";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -7,10 +7,10 @@ import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 import Email from "@material-ui/icons/Email";
 // core components
-import Button from "components/CustomButtons/Button.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
+import Button from "components/CustomButtons/Button";
+import CustomInput from "components/CustomInput/CustomInput";
 
-import styles from "assets/jss/material-kit-react/views/loginPage.js";
+import styles from "assets/jss/material-kit-react/views/loginPage";
 
 const useStyles = makeStyles(styles);
 
@@ -23,7 +23,8 @@ export default function SignIn() {
 
     const signInWithEmailAndPasswordHandler = (event, email, password) => {
         event.preventDefault();
-        auth.signInWithEmailAndPassword(email, password).catch(error => {
+        auth.signInWithEmailAndPassword(email, password)
+            .catch(error => {
             setError("Error signing in with password and email.");
             console.error("Error signing in with password and email", error);
         });
@@ -89,7 +90,7 @@ export default function SignIn() {
             <Button simple color="primary" size="lg" onClick={(event) => { signInWithEmailAndPasswordHandler(event, email, password) }}>
                 Log In
                     </Button>
-            <Button color="primary" simple href="/password-reset-page">
+            <Button color="primary" simple href="/password-reset">
                 Don't remember your password?
                           </Button>
         </>
