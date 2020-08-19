@@ -1,11 +1,10 @@
+
 const { Client } = require('pg');
 
-const connectionString = "postgres://postgres:tunganlinh@35.225.81.133/nursing_db";
+const connectionString = "postgres://postgres:USER_PASSWORD@35.225.81.133/postgres";
 
 const client = new Client({
     connectionString: connectionString
 });
 
-client.connect().then(res => app.listen('3000'));
-
-module.exports = client; 
+module.exports = client;

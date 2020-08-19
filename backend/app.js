@@ -8,7 +8,7 @@ var indexRouter = require('./routes/index');
 var purchasesRouter = require('./routes/purchases');
 const cors = require('cors');
 const checkAuth = require('./authenticate');
-
+const client = require('./postresql_client')
 var app = express();
 
 // view engine setup
@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors())
 
-app.use('/', checkAuth);
+//app.use('/', checkAuth);
 app.use('/', indexRouter);
 app.use('/purchases', purchasesRouter);
 
@@ -43,4 +43,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+client.connect().then(res => app.listen('3000'));
 module.exports = app;
