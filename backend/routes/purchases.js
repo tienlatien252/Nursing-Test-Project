@@ -5,20 +5,18 @@ const router = express.Router();
 /* GET user's purchases. */
 router.get('/', async function getPurchases(req, res, next) {
     try {
-        const user_id = req.uid;
-        const purchases = await client.query(`SELECT * FROM purchases,tests WHERE user_id='${user_id}'`);
-        const rows = purchases.rows.map((row) =>{
-            delete row.user_id;
-            return row;
-        });
+        const userId = req.uid;
+        const queryString = `SELECT purchases.test_id, purchases.purchase_time, purchases.expire_time, tests.test_name, tests.test_description FROM purchases,tests WHERE user_id='${userId}';`;
+        const purchases = await client.query(queryString);
         const response = {
-            'uid': user_id,
-            'purchase': rows
+            'uid': userId,
+            'purchase': purchases.rows
         };
         return res.json(response);
     } catch (error) {
-        return res.status(500).send({ error: 'Something failed!' });
+        console.log(`Error in function getPurchases: ${error.message}`);
+        return res.status(500).send({ error: 'Something went wrong!' });
     }
-})
+});
 
 module.exports = router;
