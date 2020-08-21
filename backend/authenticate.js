@@ -26,7 +26,7 @@ function checkAuth(req, res, next) {
         req.uid = decodedToken.uid;
         req.email = decodedToken.email;
         next()
-      }).catch(() => {
+      }).catch((error) => {
         res.status(403).send('Unauthorized')
       });
   } else {
