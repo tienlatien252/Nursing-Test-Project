@@ -2,7 +2,7 @@ const express = require('express');
 const client = require('../postresql_client');
 const router = express.Router();
 
-/* GET users purchases. */
+/* GET user's purchases. */
 router.get('/', async function getPurchases(req, res, next) {
     try {
         const userId = req.uid;
@@ -10,7 +10,7 @@ router.get('/', async function getPurchases(req, res, next) {
         const purchases = await client.query(queryString);
         const response = {
             'uid': userId,
-            'purchase': purchases.rows
+            'purchases': purchases.rows
         };
         return res.json(response);
     } catch (error) {
