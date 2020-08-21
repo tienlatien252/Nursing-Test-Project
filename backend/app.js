@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 app.use('/', indexRouter);
-app.use('/tests', purchasesRouter);
+app.use('/tests', testsRouter);
 app.use('/auth', checkAuth);
 app.use('/auth/purchases', purchasesRouter);
 
