@@ -8,7 +8,7 @@ var indexRouter = require('./routes/index');
 const cors = require('cors');
 const checkAuth = require('./authenticate');
 const client = require('./postresql_client');
-const db = require('./postresql_client');;
+const db = require('./postresql_client');
 var app = express();
 
 // view engine setup
@@ -25,9 +25,9 @@ app.use(cors())
 app.use('/', checkAuth);
 app.use('/', indexRouter);
 app.use('/purchases', async function (req, res, next) {
-  const purchases = await db.query('SELECT * from question')
-  console.log(purchases)
-  return res.json({ data: "123" })
+  const purchases = await db.query('SELECT * from question');
+  console.log(purchases);
+  return res.json({ data: "123" });
 });
 
 // catch 404 and forward to error handler

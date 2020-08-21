@@ -27,11 +27,11 @@ function checkAuth(req, res, next) {
         req.email = decodedToken.email;
         next()
       }).catch(() => {
-        res.status(403).send('Unauthorized')
+        res.status(403).send('Unauthorized');
       });
   } else {
-    res.status(403).send('Unauthorized')
+    res.status(403).send('Unauthorized');
   }
 }
 
-module.exports = checkAuth
+module.exports = checkAuth;
