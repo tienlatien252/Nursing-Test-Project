@@ -2,7 +2,7 @@ const express = require('express');
 const client = require('../postresql_client');
 const router = express.Router();
 
-/* GET users listing. */
+/* GET user's purchases. */
 router.get('/', async function getPurchases(req, res, next) {
     try {
         const user_id = req.uid;
