@@ -5,4 +5,5 @@ const connectionString = `postgres://${process.env.DATABASE_USERNAME}:${process.
 const client = new Client({
     connectionString: connectionString
 });
+
 module.exports = client;

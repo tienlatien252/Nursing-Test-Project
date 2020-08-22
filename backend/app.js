@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var purchasesRouter = require('./routes/purchases');
+var testsRouter = require('./routes/tests');
 const cors = require('cors');
 const checkAuth = require('./authenticate');
 const client = require('./postresql_client');
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 app.use('/', indexRouter);
+app.use('/tests', testsRouter);
 app.use('/auth', checkAuth);
 app.use('/auth/purchases', purchasesRouter);
 
