@@ -1,5 +1,5 @@
 const express = require('express');
-const client = require('../postresql_client');
+const client = require('../../postresql_client');
 const router = express.Router();
 
 /* GET user's purchases. */

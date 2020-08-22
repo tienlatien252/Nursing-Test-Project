@@ -1,6 +1,10 @@
 const admin = require('firebase-admin');
-
 require('dotenv').config();
+var express = require('express');
+var router = express.Router();
+var purchasesRouter = require('./auth/purchases');
+var testsRouter = require('./auth/tests');
+
 var serviceAccount = {
   "type": "service_account",
   "project_id": "iron-entropy-285002",
@@ -34,4 +38,8 @@ function checkAuth(req, res, next) {
   }
 }
 
-module.exports = checkAuth;
+router.use('/', checkAuth);
+router.use('/purchases', purchasesRouter);
+router.use('/tests', testsRouter);
+
+module.exports = router;
