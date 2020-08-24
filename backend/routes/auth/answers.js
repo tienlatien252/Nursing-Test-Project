@@ -8,7 +8,7 @@ async function getCorrectAnswers(submission, testId){
     const correctAnswers = questions.reduce((questionAnswerMap, question) =>{
         questionAnswerMap[question.question_id]=question.correct_answer;
         return questionAnswerMap;
-    }, {})
+    }, {});
 
     return correctAnswers;
 }
