@@ -16,7 +16,7 @@ async function checkPurchases(req, res, next) {
             res.status(403).send('Unauthorized! User did not purchase this test!');
         }
     } catch (error) {
-        console.log(`Error in function getPurchases: ${error.message}`);
+        console.log(`Error in function checkPurchases: ${error.message}`);
         return res.status(500).send({ error: 'Something went wrong!' });
     }
 }

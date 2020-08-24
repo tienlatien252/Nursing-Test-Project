@@ -35,7 +35,7 @@ async function postAnswers(req, res, next) {
             'answers': answers
         });
     } catch (error) {
-        console.log(`Error in function getPurchases: ${error.message}`);
+        console.log(`Error in function postAnswers: ${error.message}`);
         return res.status(500).send({ error: 'Something went wrong!' });
     }
 }

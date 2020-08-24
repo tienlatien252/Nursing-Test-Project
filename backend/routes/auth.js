@@ -3,7 +3,7 @@ require('dotenv').config();
 var express = require('express');
 var router = express.Router();
 var purchasesRouter = require('./auth/purchases');
-var testsRouter = require('./auth/tests');
+var testingRouter = require('./auth/testing');
 
 var serviceAccount = {
   "type": "service_account",
@@ -40,6 +40,6 @@ function checkAuth(req, res, next) {
 
 router.use('/', checkAuth);
 router.use('/purchases', purchasesRouter);
-router.use('/tests', testsRouter);
+router.use('/testing', testingRouter);
 
 module.exports = router;
