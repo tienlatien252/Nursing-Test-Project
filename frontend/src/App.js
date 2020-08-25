@@ -23,10 +23,10 @@ export default function App() {
                     <Route path="/" component={LandingPage} exact />
                     <Route path="/about" component={AboutPage} />
                     <Route path="/login" component={LoginPage} />
-                    <Route path="/purchases" component={PurchasePage} />
+                    <Route path="/tests" component={TestPage} />
                     <Route path="/password-reset" component={PasswordResetPage} />
                     <PrivateRoute path="/profile" component={ProfilePage} />
-                    <PrivateRoute path="/tests" component={TestPage} />
+                    <PrivateRoute path="/purchases" component={PurchasePage} />
                 </UserProvider>
             </Switch>
         </Router>

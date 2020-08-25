@@ -32,11 +32,11 @@ export default function HeaderLinks() {
         </ListItem>
         <ListItem className={classes.listItem}>
           <Button
-            href="/purchases"
+            href="/tests"
             color="transparent"
             className={classes.navLink}
           >
-            Purchase
+            Tests
 </Button>
         </ListItem>
         <ListItem className={classes.listItem}>
@@ -71,11 +71,11 @@ export default function HeaderLinks() {
         </ListItem>
         <ListItem className={classes.listItem}>
           <Button
-            href="/tests"
+            href="/purchases"
             color="transparent"
             className={classes.navLink}
           >
-            Tests
+            Purchased Tests
 </Button>
         </ListItem>
         <ListItem className={classes.listItem}>

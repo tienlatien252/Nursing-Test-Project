@@ -5,6 +5,7 @@ import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 // core components
 import Header from "components/Header/Header";
+import TestsSection from "./Sections/TestsSection";
 import Footer from "components/Footer/Footer";
 import HeaderLinks from "components/Header/HeaderLinks";
 import Parallax from "components/Parallax/Parallax";
@@ -33,7 +34,7 @@ export default function AboutPage(props) {
             <Parallax small filter image={require("assets/img/profile-bg.jpg")} />
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div className={classes.container}>
-                    <p>This is the tests page.</p>
+                    <TestsSection />
                 </div>
             </div>
             <Footer />
