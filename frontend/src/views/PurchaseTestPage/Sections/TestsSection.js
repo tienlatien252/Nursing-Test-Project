@@ -21,11 +21,14 @@ export default function TestsSection() {
   const [testArray, setTestArray] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/tests")
-      .then(response => response.json())
-      .then(data => setTestArray(data["tests"]))
-    // console.log(`This is your data: ${JSON.stringify(testArray)}`);
-  });
+    async function fetchData() {
+      const response = await fetch("http://localhost:5000/tests");
+      const json = await response.json();
+      const tests = json["tests"];
+      setTestArray(tests);
+    }
+    fetchData();
+  }, []);
 
   return (
     testArray.map((test) =>
