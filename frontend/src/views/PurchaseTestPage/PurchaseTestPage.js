@@ -5,17 +5,17 @@ import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 // core components
 import Header from "components/Header/Header";
-import TestsSection from "./Sections/TestsSection";
 import Footer from "components/Footer/Footer";
 import HeaderLinks from "components/Header/HeaderLinks";
 import Parallax from "components/Parallax/Parallax";
+import TestsSection from "./Sections/TestsSection";
 import GridContainer from "components/Grid/GridContainer";
 
 import styles from "assets/jss/material-kit-react/views/aboutPage";
 
 const useStyles = makeStyles(styles);
 
-export default function AboutPage(props) {
+export default function PurchaseTestPage(props) {
     const classes = useStyles();
     const { ...rest } = props;
 

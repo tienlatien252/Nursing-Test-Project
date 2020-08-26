@@ -13,7 +13,7 @@ import styles from "assets/jss/material-kit-react/views/aboutPage";
 
 const useStyles = makeStyles(styles);
 
-export default function AboutPage(props) {
+export default function TestingPage(props) {
     const classes = useStyles();
     const { ...rest } = props;
     return (
@@ -32,7 +32,7 @@ export default function AboutPage(props) {
             <Parallax small filter image={require("assets/img/profile-bg.jpg")} />
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div className={classes.container}>
-                    <p>This is the purchases page.</p>
+                    <p>This is the testing page.</p>
                 </div>
             </div>
             <Footer />

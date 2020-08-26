@@ -13,7 +13,7 @@ import styles from "assets/jss/material-kit-react/views/aboutPage";
 
 const useStyles = makeStyles(styles);
 
-export default function AboutPage(props) {
+export default function ProfilePage(props) {
     const classes = useStyles();
     const { ...rest } = props;
 

@@ -9,8 +9,8 @@ import LandingPage from "views/LandingPage/LandingPage";
 import AboutPage from "views/AboutPage/AboutPage";
 import LoginPage from "views/LoginPage/LoginPage";
 import ProfilePage from "views/ProfilePage/ProfilePage";
-import PurchasePage from "views/PurchasePage/PurchasePage";
-import TestPage from "views/TestPage/TestPage";
+import TestingPage from "views/TestingPage/TestingPage";
+import PurchaseTestPage from "views/PurchaseTestPage/PurchaseTestPage";
 import PasswordResetPage from "views/LoginPage/PasswordResetPage";
 
 import "assets/scss/material-kit-react.scss?v=1.9.0";
@@ -23,10 +23,10 @@ export default function App() {
                     <Route path="/" component={LandingPage} exact />
                     <Route path="/about" component={AboutPage} />
                     <Route path="/login" component={LoginPage} />
-                    <Route path="/tests" component={TestPage} />
+                    <Route path="/purchase-tests" component={PurchaseTestPage} />
                     <Route path="/password-reset" component={PasswordResetPage} />
                     <PrivateRoute path="/profile" component={ProfilePage} />
-                    <PrivateRoute path="/purchases" component={PurchasePage} />
+                    <PrivateRoute path="/testing" component={TestingPage} />
                 </UserProvider>
             </Switch>
         </Router>

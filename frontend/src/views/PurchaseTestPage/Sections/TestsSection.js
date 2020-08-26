@@ -15,7 +15,7 @@ import styles from "assets/jss/material-kit-react/views/landingPageSections/team
 
 const useStyles = makeStyles(styles);
 
-export default function TeamSection() {
+export default function TestsSection() {
   const classes = useStyles();
 
   const [testArray, setTestArray] = useState([]);
