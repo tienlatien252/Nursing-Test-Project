@@ -38,7 +38,7 @@ export default function PurchaseTestPage(props) {
                     <div className={classes.section} style={{ textAlign: "center" }}>
                         <h2 className={classes.title}>Here are our tests</h2>
                         <div>
-                            <GridContainer>
+                            <GridContainer justify="center">
                                 <TestsSection />
                             </GridContainer>
                         </div>

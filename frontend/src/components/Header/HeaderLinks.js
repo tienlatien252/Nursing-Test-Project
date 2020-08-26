@@ -32,7 +32,7 @@ export default function HeaderLinks() {
         </ListItem>
         <ListItem className={classes.listItem}>
           <Button
-            href="/tests"
+            href="/purchase-tests"
             color="transparent"
             className={classes.navLink}
           >
@@ -71,7 +71,7 @@ export default function HeaderLinks() {
         </ListItem>
         <ListItem className={classes.listItem}>
           <Button
-            href="/tests"
+            href="/purchase-tests"
             color="transparent"
             className={classes.navLink}
           >
@@ -80,7 +80,7 @@ export default function HeaderLinks() {
         </ListItem>
         <ListItem className={classes.listItem}>
           <Button
-            href="/purchases"
+            href="/testing"
             color="transparent"
             className={classes.navLink}
           >

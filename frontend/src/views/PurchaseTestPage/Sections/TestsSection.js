@@ -32,7 +32,7 @@ export default function TestsSection() {
 
   return (
     testArray.map((test) =>
-      <GridItem xs={12} sm={12} md={4} key={test["test_id"]} style={{ textAlign: "center" }}>
+      <GridItem xs={12} sm={12} md={4} key={test["test_id"]}>
         <Card>
           <CardHeader color="primary" className={classes.CardHeader}>
             <h4>{test["test_name"]}</h4>
