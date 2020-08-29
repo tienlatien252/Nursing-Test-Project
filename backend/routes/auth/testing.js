@@ -1,6 +1,7 @@
 const express = require('express');
 const client = require('../../postresql_client');
-const postAnswers = require('./answers')
+const postAnswers = require('./answers');
+const getQuestions = require('./questions');
 const router = express.Router();
 
 async function checkPurchases(req, res, next) {
@@ -22,5 +23,6 @@ async function checkPurchases(req, res, next) {
 }
 
 router.post('/:testId/answers', checkPurchases, postAnswers);
+router.get('/:testId/questions', checkPurchases, getQuestions);
 
 module.exports = router;
