@@ -3,7 +3,7 @@ import psycopg2
 import csv
 import os
 
-file = r"congtung_2.csv"
+file = r""
 #connect to db
 conn = psycopg2.connect(
     database="",
