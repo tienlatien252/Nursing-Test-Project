@@ -22,7 +22,11 @@ export default function TestsSection() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("http://localhost:5000/tests");
+      const response = await fetch("http://localhost:5000/tests", {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'default',
+      });
       const json = await response.json();
       const tests = json["tests"];
       setTestArray(tests);
