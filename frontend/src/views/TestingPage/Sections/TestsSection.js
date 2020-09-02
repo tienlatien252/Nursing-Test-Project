@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { auth } from "firebase.js";
+import axios from 'axios';
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -15,6 +17,11 @@ import styles from "assets/jss/material-kit-react/views/landingPageSections/team
 
 const useStyles = makeStyles(styles);
 
+const client = axios.create({
+    baseURL: 'http://localhost:5000',
+    json: true
+})
+
 export default function TestsSection() {
     const classes = useStyles();
 
@@ -22,15 +29,22 @@ export default function TestsSection() {
 
     useEffect(() => {
         async function fetchData() {
-            const response = await fetch("http://localhost:5000/auth/purchases", {
-                method: 'GET',
-                // headers: myHeaders,
-                mode: 'cors',
-                cache: 'default',
-            });
-            const json = await response.json();
-            const tests = json["purchases"];
-            setTestArray(tests);
+            if (auth.currentUser) {
+                const idToken = await auth.currentUser.getIdToken(true);
+                try {
+                    const response = await client({
+                        method: 'get',
+                        url: '/auth/purchases',
+                        headers: {
+                            'AuthToken': idToken
+                        }
+                    });
+                    const tests = response.data["purchases"];
+                    setTestArray(tests);
+                } catch (error) {
+                    console.log(error);
+                }
+            }
         }
         fetchData();
     }, []);
@@ -44,12 +58,15 @@ export default function TestsSection() {
                     </CardHeader>
                     <CardBody>
                         <p className={classes.description}>
-                            Purchasing Time: {test["purchase_time"]}
-                            Expiration Time: {test["expire_time"]}
+                            Purchasing Time: {test["purchase_time"]}{"\n"}
+                            Expiration Time: {test["expire_time"]}{"\n"}
                             {test["test_description"]}
                         </p>
+                        <Button simple color="primary" size="lg">
+                            Take test
+                  </Button>
                     </CardBody>
                 </Card>
-            </GridItem>)
+            </GridItem >)
     );
 }
