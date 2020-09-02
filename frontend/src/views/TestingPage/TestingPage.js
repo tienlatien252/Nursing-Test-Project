@@ -35,7 +35,7 @@ export default function TestingPage(props) {
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div className={classes.container}>
                     <div className={classes.section} style={{ textAlign: "center" }}>
-                        <h2 className={classes.title}>Here are your tests</h2>
+                        <h2 className={classes.title}>Here are your tests:</h2>
                         <div>
                             <GridContainer justify="center">
                                 <TestsSection />

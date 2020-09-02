@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import GridItem from "components/Grid/GridItem";
 import Button from "components/CustomButtons/Button";
 import Card from "components/Card/Card";
-import CardHeader from "components/Card/CardHeader.js";
+import CardHeader from "components/Card/CardHeader";
 import CardBody from "components/Card/CardBody";
 
 import styles from "assets/jss/material-kit-react/views/landingPageSections/teamStyle";
@@ -44,9 +44,16 @@ export default function TestsSection() {
           <CardBody>
             <p className={classes.description}>
               {test["test_description"]}
+              <br />
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+              irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+              pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+              deserunt mollit anim id est laborum."
             </p>
             <Button simple color="primary" size="lg">
-              Purchase
+              PURCHASE NOW FOR $$
                   </Button>
           </CardBody>
         </Card>
