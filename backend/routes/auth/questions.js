@@ -5,7 +5,7 @@ async function getQuestions(req, res, next) {
     try {
         const testId = req.params.testId;
         const limit = req.query.limit || 20;
-        const queryString = `SELECT test_id, question_id, description, topic, picture_link, correct_answer, answers FROM questions WHERE test_id = ${testId} ORDER BY random() ${isNaN(limit) ? '' : 'LIMIT ' + limit}`; 
+        const queryString = `SELECT test_id, question_id, description, topic, picture_link, answers FROM questions WHERE test_id = ${testId} ORDER BY random() ${isNaN(limit) ? '' : 'LIMIT ' + limit}`; 
         const questions = await client.query(queryString);
         const response = {
             'questions': questions['rows']
