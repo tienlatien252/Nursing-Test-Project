@@ -8,6 +8,8 @@ import Header from "components/Header/Header";
 import Footer from "components/Footer/Footer";
 import HeaderLinks from "components/Header/HeaderLinks";
 import Parallax from "components/Parallax/Parallax";
+import TestsSection from "./Sections/TestsSection";
+import GridContainer from "components/Grid/GridContainer";
 
 import styles from "assets/jss/material-kit-react/views/aboutPage";
 
@@ -32,7 +34,14 @@ export default function TestingPage(props) {
             <Parallax small filter image={require("assets/img/profile-bg.jpg")} />
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div className={classes.container}>
-                    <p>This is the testing page.</p>
+                    <div className={classes.section} style={{ textAlign: "center" }}>
+                        <h2 className={classes.title}>Here are your tests:</h2>
+                        <div>
+                            <GridContainer justify="center">
+                                <TestsSection />
+                            </GridContainer>
+                        </div>
+                    </div>
                 </div>
             </div>
             <Footer />
