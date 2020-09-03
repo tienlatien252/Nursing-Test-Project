@@ -53,7 +53,7 @@ export default function TestsSection() {
               deserunt mollit anim id est laborum."
             </p>
             <Button simple color="primary" size="lg">
-              PURCHASE NOW FOR $$
+              PURCHASE NOW FOR ${test["test_price"]}
                   </Button>
           </CardBody>
         </Card>
