@@ -10,6 +10,7 @@ import CardHeader from "components/Card/CardHeader.js";
 import Radio from "@material-ui/core/Radio";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
+import Grid from '@material-ui/core/Grid';
 
 import { makeStyles } from '@material-ui/core/styles';
 import radoStyles from "assets/jss/material-kit-react/customCheckboxRadioSwitch.js";
@@ -22,6 +23,10 @@ const styles = {
   textAlignLeft: {
     textAlign: "left"
   },
+  image: {
+    maxWidth: "100%",
+    height: "auto"
+  },
   ...radoStyles
 };
 
@@ -29,7 +34,7 @@ const useStyles = makeStyles(styles);
 
 export default function QuestionCard(props) {
   const classes = useStyles();
-  const { className, question_id, description, picture_link, answers, ...rest } = props;
+  const { className, question_id, description, picture_link, answers, index } = props;
   const [selectedEnabled, setSelectedEnabled] = useState();
 
   const wrapperDiv = classNames(
@@ -40,20 +45,28 @@ export default function QuestionCard(props) {
 
   return (
     <Card>
-      <CardHeader className={classes.textCenter} color="info">Question 1</CardHeader>
+      <CardHeader className={classes.textCenter} color="info">{`Question ${index}`}</CardHeader>
       <CardBody>
-        <p>
-          {description}
-        </p>
-        <div>
+        <Grid container spacing={2}>
+          <Grid item xs={12}><p>
+            {description}
+          </p> </Grid>
+          <Grid item xs={12}>
+            {picture_link !== "URL" && picture_link !== "" && <img
+              className={classes.image}
+              src={picture_link}
+              alt="Card-img-cap"
+            />}</Grid>
+        </Grid>
+        <Grid container spacing={3}>
           {answers.map((answer, index) => {
-            return <div className={wrapperDiv} key={index}>
+            return <Grid item xs={12} className={wrapperDiv} key={index}>
               <FormControlLabel
                 control={
                   <Radio
-                    checked={selectedEnabled === answer}
-                    onChange={() => setSelectedEnabled(answer)}
-                    value={answer}
+                    checked={selectedEnabled === index}
+                    onChange={() => setSelectedEnabled(index)}
+                    value={index}
                     icon={
                       <FiberManualRecord
                         className={classes.radioUnchecked}
@@ -71,9 +84,9 @@ export default function QuestionCard(props) {
                   label: classes.label
                 }}
                 label={`${String.fromCharCode(index + 65)}. ${answer}`}
-              /></div>;
+              /></Grid>;
           })}
-        </div>
+        </Grid>
       </CardBody>
     </Card>
   );
@@ -81,6 +94,7 @@ export default function QuestionCard(props) {
 
 QuestionCard.propTypes = {
   className: PropTypes.string,
+  index: PropTypes.number,
   question_id: PropTypes.string,
   description: PropTypes.string,
   picture_link: PropTypes.string,
