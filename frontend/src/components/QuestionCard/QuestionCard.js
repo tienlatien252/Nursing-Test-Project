@@ -13,7 +13,7 @@ import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
 import Grid from '@material-ui/core/Grid';
 
 import { makeStyles } from '@material-ui/core/styles';
-import radoStyles from "assets/jss/material-kit-react/customCheckboxRadioSwitch.js";
+import radioStyles from "assets/jss/material-kit-react/customCheckboxRadioSwitch.js";
 
 // core components
 const styles = {
@@ -27,7 +27,7 @@ const styles = {
     maxWidth: "100%",
     height: "auto"
   },
-  ...radoStyles
+  ...radioStyles
 };
 
 const useStyles = makeStyles(styles);
