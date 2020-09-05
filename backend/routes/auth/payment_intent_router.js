@@ -1,5 +1,6 @@
+require('dotenv').config();
 const client = require('../../postresql_client');
-const stripe = require('stripe')('');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const express = require('express');
 const router = express.Router();
 
