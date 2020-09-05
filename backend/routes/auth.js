@@ -4,7 +4,7 @@ var express = require('express');
 var router = express.Router();
 var purchasesRouter = require('./auth/purchases');
 var testingRouter = require('./auth/testing');
-var paymentIntent = require('./auth/payment_intent');
+var paymentIntentRouter = require('./auth/payment_intent_router');
 var serviceAccount = {
   "type": "service_account",
   "project_id": "iron-entropy-285002",
@@ -41,6 +41,6 @@ function checkAuth(req, res, next) {
 router.use('/', checkAuth);
 router.use('/purchases', purchasesRouter);
 router.use('/testing', testingRouter);
-router.use('/create-payment-intent', paymentIntent);
+router.use('/paymentIntent', paymentIntentRouter);
 
 module.exports = router;
