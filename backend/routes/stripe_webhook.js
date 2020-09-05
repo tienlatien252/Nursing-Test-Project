@@ -1,5 +1,7 @@
 const stripe = require('stripe')('pk_test_51HHZhMHCXVS0Bcw5gzo4yE1Lhyj6zkvdjcNDL5KlpIDxPUt9tJ6IXsMwwM3R1BfcfDdkyc6UxpIzuEQ1pGffRBQx00wViioYgg');
 const bodyParser = require('body-parser');
+const express = require('express');
+const router = express.Router();
 
 router.post('/', bodyParser.raw({ type: 'application/json' }), (request, response) {
     let event;
@@ -29,10 +31,11 @@ router.post('/', bodyParser.raw({ type: 'application/json' }), (request, respons
     response.json({ received: true });
 }
 
+module.exports = 
 
 
 
 
 
 
-module.exports.
+module.exports = router;

@@ -1,5 +1,5 @@
 const client = require('../../postresql_client');
-const stripe = require('stripe')('sk_test_51HHZhMHCXVS0Bcw5W4I0WGRDHV4D4xuI4GKaiHB8bderxA0FfnalathFytscdbUwi9EQxj0toFpS2gFCX1RpgJnw00CPYJQBNr');
+const stripe = require('stripe')('');
 const express = require('express');
 const router = express.Router();
 
