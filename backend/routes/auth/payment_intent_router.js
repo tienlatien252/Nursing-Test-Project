@@ -16,18 +16,23 @@ async function amountOrder() {
 }
 
 router.get('/', async function createPaymentIntent(req, res, next) {
-    let test_amount = await amountOrder()
-    const paymentIntent = await stripe.paymentIntents.create({
-        amount: test_amount,
-        currency: 'usd',
-        payment_method_types: ['card'],
-        // Verify your integration in this guide by including this parameter
-        metadata: { integration_check: 'accept_a_payment' },
-    });
-    const response = {
-        'client_secret': paymentIntent.client_secret,
-    };
-    return res.json(response);
+    try {
+        let test_amount = await amountOrder();
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount: test_amount,
+            currency: 'usd',
+            payment_method_types: ['card'],
+            // Verify your integration in this guide by including this parameter
+            metadata: { integration_check: 'accept_a_payment' },
+        });
+        const response = {
+            'client_secret': paymentIntent.client_secret,
+        };
+        return res.json(response);
+    } catch (error) {
+        console.log(`Error in function createPaymentIntent: ${error.message}`);
+        return res.status(500).send({ error: 'Something went wrong!' });
+    }
 })
 
 module.exports = router;
