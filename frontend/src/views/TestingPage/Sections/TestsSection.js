@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { auth } from "firebase.js";
 import axios from 'axios';
 // @material-ui/core components
@@ -8,13 +9,11 @@ import { makeStyles } from "@material-ui/core/styles";
 
 // core components
 import GridItem from "components/Grid/GridItem";
-import Button from "components/CustomButtons/Button";
 import Card from "components/Card/Card";
 import CardHeader from "components/Card/CardHeader";
 import CardBody from "components/Card/CardBody";
 
 import styles from "assets/jss/material-kit-react/views/landingPageSections/teamStyle";
-import TestingDialog from "./TestingDialog"
 
 const useStyles = makeStyles(styles);
 
@@ -27,15 +26,6 @@ export default function TestsSection() {
     const classes = useStyles();
 
     const [testArray, setTestArray] = useState([]);
-    const [open, setOpen] = React.useState(false);
-
-    const handleClickOpen = () => {
-      setOpen(true);
-    };
-  
-    const handleClose = () => {
-      setOpen(false);
-    };
 
     useEffect(() => {
         async function fetchData() {
@@ -82,12 +72,11 @@ export default function TestsSection() {
                             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
                             deserunt mollit anim id est laborum."
                         </p>
-                        <Button simple color="primary" size="lg" onClick={handleClickOpen}>
-                            Take test
-                  </Button>
+                        <Link key={test["test_id"]} to={`/testing/${test["test_id"]}/questions`}>
+                            Take {test["test_name"]}
+                        </Link>
                     </CardBody>
                 </Card>
-                <TestingDialog open={open} handleClose={handleClose} testId={test["test_id"]}></TestingDialog>
             </GridItem >)
     );
 }

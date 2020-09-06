@@ -34,7 +34,7 @@ const useStyles = makeStyles(styles);
 
 export default function QuestionCard(props) {
   const classes = useStyles();
-  const { question_id, description, picture_link, answers, index } = props;
+  const { description, picture_link, answers, index } = props;
   const [selectedEnabled, setSelectedEnabled] = useState();
 
   const wrapperDiv = classNames(
