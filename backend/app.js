@@ -3,10 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 var testsRouter = require('./routes/tests');
 var authRouter = require('./routes/auth');
+var stripeWebhook = require('./routes/stripe_webhook');
 
 const cors = require('cors');
 const client = require('./postresql_client');
@@ -22,12 +24,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
 
 app.use(cors());
 
 app.use('/', indexRouter);
 app.use('/tests', testsRouter);
 app.use('/auth', authRouter);
+app.use('/stripe-webhook', stripeWebhook);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
