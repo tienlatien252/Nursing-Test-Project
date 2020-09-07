@@ -3,12 +3,12 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const router = express.Router();
 
-router.post('/', bodyParser.raw({ type: 'application/json' }), (request, response) {
+router.post('/', bodyParser.raw({ type: 'application/json' }), function (request, response) {
     let event;
     try {
         event = JSON.parse(request.body);
     } catch (err) {
-        response.status(400).send(`Webhook Error: ${err.message}`);
+        response.status(400).send(`Webhook Error: ${err.message}`)
     }
 
     // Handle the event
@@ -29,13 +29,6 @@ router.post('/', bodyParser.raw({ type: 'application/json' }), (request, respons
 
     // Return a 200 response to acknowledge receipt of the event
     response.json({ received: true });
-}
-
-module.exports = 
-
-
-
-
-
+})
 
 module.exports = router;
