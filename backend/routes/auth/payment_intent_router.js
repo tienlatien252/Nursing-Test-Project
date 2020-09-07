@@ -12,7 +12,7 @@ async function amountOrder() {
         return amount;
     }
     catch (error) {
-        console.log(`Error in function getQuestions: ${error.message}`);
+        console.log(`Error in function amountOrder: ${error.message}`);
     }
 }
 
