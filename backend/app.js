@@ -11,7 +11,7 @@ var authRouter = require('./routes/auth');
 var stripeWebhook = require('./routes/stripe_webhook');
 
 const cors = require('cors');
-const client = require('./postresql_client');
+const {client} = require('./postresql_client');
 var app = express();
 
 // view engine setup
