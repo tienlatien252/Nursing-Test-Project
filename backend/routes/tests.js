@@ -1,12 +1,12 @@
 const express = require('express');
-const client = require('../postresql_client');
+const {queryPostgres} = require('../postresql_client');
 const router = express.Router();
 
 /* GET all tests. */
 router.get('/', async function getTests(req, res, next) {
     try {
         const queryString = `SELECT tests.test_id, tests.test_name, tests.test_price, tests.test_description FROM tests;`;
-        const tests = await client.query(queryString);
+        const tests = await queryPostgres(queryString);
         const response = {
             'tests': tests.rows
         };

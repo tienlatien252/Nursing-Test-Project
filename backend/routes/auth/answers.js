@@ -1,9 +1,9 @@
-const client = require('../../postresql_client');
+const {queryPostgres} = require('../../postresql_client');
 
 async function getCorrectAnswers(submission, testId){
     const userQuestion = submission.map((answer)=>answer.questionId).toString();
     const queryString = `SELECT * FROM questions WHERE test_id='${testId}' AND question_id IN (${userQuestion});`;
-    const questions = (await client.query(queryString)).rows;
+    const questions = (await queryPostgres(queryString)).rows;
 
     const correctAnswers = questions.reduce((questionAnswerMap, question) =>{
         questionAnswerMap[question.question_id]=question.correct_answer;
