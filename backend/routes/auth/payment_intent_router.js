@@ -1,5 +1,5 @@
 require('dotenv').config();
-const client = require('../../postresql_client');
+const {queryPostgres} = require('../../postresql_client');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const express = require('express');
 const router = express.Router();
@@ -7,7 +7,7 @@ const router = express.Router();
 async function amountOrder() {
     try {
         const queryString = "SELECT test_price FROM tests WHERE test_id = 1";
-        const test = await client.query(queryString);
+        const test = await queryPostgres(queryString);
         var amount = test.rows[0].test_price;
         return amount;
     }
