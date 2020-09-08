@@ -8,7 +8,6 @@ const client = require('../../postresql_client');
 router.post('/', bodyParser.raw({ type: 'application/json' }), async function (request, response) {
     const sig = request.headers['stripe-signature'];
     let event;
-    console.log(request.body);
     try {
         event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
         console.log("test event: ",event);
@@ -21,7 +20,7 @@ router.post('/', bodyParser.raw({ type: 'application/json' }), async function (r
     switch (event.type) {
         case 'payment_intent.succeeded':
             const paymentIntent = event.data.object;
-            const queryString = `INSERT INTO purchases(purchase_time, expire_time) VALUES (TO_TIMESTAMP(${event.data.object.created},'YYYY-MM-DD HH:MI:SS'),TO_TIMESTAMP(${event.data.object.created} + 378432000,'YYYY-MM-DD HH:MI:SS') )`;
+            const queryString = `INSERT INTO purchases(purchase_time, expire_time) VALUES (TO_TIMESTAMP(${event.data.object.created},'YYYY-MM-DD HH:MI:SS'),TO_TIMESTAMP(${event.data.object.created} + 3784320,'YYYY-MM-DD HH:MI:SS') )`;
             
             console.log('PaymentIntent was successful!');
             break;
