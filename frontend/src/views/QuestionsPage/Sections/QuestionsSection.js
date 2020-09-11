@@ -2,37 +2,14 @@ import React, { useState, useEffect } from "react";
 import { auth } from "firebase.js";
 import axios from 'axios';
 // @material-ui/core components
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import MobileStepper from '@material-ui/core/MobileStepper';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import MobileStepper from '@material-ui/core/MobileStepper';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 // core components
 import QuestionCard from "components/QuestionCard/QuestionCard";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 400,
-    flexGrow: 1,
-  },
-  header: {
-    display: 'flex',
-    alignItems: 'center',
-    height: 50,
-    paddingLeft: theme.spacing(4),
-    backgroundColor: theme.palette.background.default,
-  },
-  img: {
-    height: 255,
-    maxWidth: 400,
-    overflow: 'hidden',
-    display: 'block',
-    width: '100%',
-  },
-}));
 
 const client = axios.create({
   baseURL: 'http://localhost:5000',
@@ -61,7 +38,6 @@ function shuffle(array) {
 }
 
 export default function QuestionsSection(props) {
-  const classes = useStyles();
   const theme = useTheme();
   const { testId } = props;
   const [questions, setQuestions] = useState([]);
@@ -99,17 +75,21 @@ export default function QuestionsSection(props) {
   };
 
   return (
-    <div className={classes.root}>
-      <Paper square elevation={0} className={classes.header}>
-        <Typography>{questions[activeStep]}</Typography>
-      </Paper>
-      {/* <QuestionCard
-        picture_link={questions[activeStep].picture_link}
-        description={questions[activeStep].description}
-        question_id={questions[activeStep].question_id}
-        answers={shuffle(questions[activeStep].answers)}
-        index={questions[activeStep] + 1}>
-      </QuestionCard> */}
+    <div>
+      {questions.map((question, questionIndex) => {
+        return (
+          questionIndex === activeStep ?
+            <Grid item xs={12} key={questionIndex} >
+              <QuestionCard
+                picture_link={question.picture_link}
+                description={question.description}
+                question_id={question.question_id}
+                answers={shuffle(question.answers)}
+                index={questionIndex + 1}>
+              </QuestionCard>
+            </Grid> : ""
+        )
+      })}
       <MobileStepper
         steps={maxSteps}
         position="static"
@@ -128,13 +108,6 @@ export default function QuestionsSection(props) {
           </Button>
         }
       />
-    </div>
-    // <Grid container spacing={3} justify="center" align="center">
-    //   {questions.map((question, questionIndex) => {
-    //     return <Grid item xs={12} key={questionIndex}>
-    //       <QuestionCard picture_link={question.picture_link} description={question.description} question_id={question.question_id} answers={shuffle(question.answers)} index={questionIndex + 1}></QuestionCard>
-    //     </Grid>
-    //   })}
-    // </Grid>
+    </div >
   );
 }

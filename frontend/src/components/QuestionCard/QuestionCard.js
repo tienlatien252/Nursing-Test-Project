@@ -13,7 +13,7 @@ import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
 import Grid from '@material-ui/core/Grid';
 
 import { makeStyles } from '@material-ui/core/styles';
-import radioStyles from "assets/jss/material-kit-react/customCheckboxRadioSwitch.js";
+import radioStyles from "assets/jss/material-kit-react/customCheckboxRadioSwitch";
 
 // core components
 const styles = {
@@ -98,4 +98,5 @@ QuestionCard.propTypes = {
   description: PropTypes.string,
   picture_link: PropTypes.string,
   answers: PropTypes.array,
+  activeStep: PropTypes.number,
 };
