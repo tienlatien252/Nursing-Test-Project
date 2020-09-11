@@ -27,11 +27,6 @@ const useStyles = makeStyles((theme) => ({
     }, ...styles
 }));
 
-const client = axios.create({
-    baseURL: 'http://localhost:5000',
-    json: true
-})
-
 export default function TestsSection() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);

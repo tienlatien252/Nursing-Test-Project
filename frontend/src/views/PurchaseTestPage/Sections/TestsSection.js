@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
+import useDataApi from "../../../utils/BackendHook";
 
 // @material-ui/icons
 
@@ -10,6 +11,7 @@ import Button from "components/CustomButtons/Button";
 import Card from "components/Card/Card";
 import CardHeader from "components/Card/CardHeader";
 import CardBody from "components/Card/CardBody";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import styles from "assets/jss/material-kit-react/views/landingPageSections/teamStyle";
 
@@ -17,25 +19,20 @@ const useStyles = makeStyles(styles);
 
 export default function TestsSection() {
   const classes = useStyles();
-
-  const [testArray, setTestArray] = useState([]);
+  const [{ data, isLoading, isError }, setRequest] = useDataApi();
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch("http://localhost:5000/tests", {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'default',
-      });
-      const json = await response.json();
-      const tests = json["tests"];
-      setTestArray(tests);
+    setRequest({
+      method: 'get',
+      path: '/tests'
     }
-    fetchData();
+    );
   }, []);
 
   return (
-    testArray.map((test) =>
+    isLoading || !data.tests ? <div className={classes.loading}>
+      <CircularProgress />
+    </div> : data.tests.map((test) =>
       <GridItem xs={12} sm={12} md={4} key={test["test_id"]}>
         <Card>
           <CardHeader color="primary" className={classes.CardHeader}>
@@ -54,7 +51,7 @@ export default function TestsSection() {
             </p>
             <Button simple color="primary" size="lg">
               PURCHASE NOW FOR ${test["test_price"]}
-                  </Button>
+            </Button>
           </CardBody>
         </Card>
       </GridItem>)
