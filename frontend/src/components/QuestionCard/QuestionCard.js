@@ -8,6 +8,7 @@ import Card from "components/Card/Card";
 import CardBody from "components/Card/CardBody";
 import CardHeader from "components/Card/CardHeader";
 import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
 import Grid from '@material-ui/core/Grid';
@@ -34,14 +35,19 @@ const useStyles = makeStyles(styles);
 
 export default function QuestionCard(props) {
   const classes = useStyles();
-  const { description, picture_link, answers, index } = props;
+  const { question_id, description, picture_link, answers, index } = props;
   const [selectedEnabled, setSelectedEnabled] = useState();
+  const [answer, setAnswer] = useState({ "questionId": question_id, "answer": "" });
 
   const wrapperDiv = classNames(
     classes.checkboxAndRadio,
     classes.checkboxAndRadioHorizontal,
     classes.textAlignLeft
   );
+
+  const onChangeHandler = (event) => {
+    setAnswer({ "questionId": question_id, "answer": event.currentTarget.value });
+  };
 
   return (
     <Card>
@@ -59,33 +65,35 @@ export default function QuestionCard(props) {
             />}</Grid>
         </Grid>
         <Grid container spacing={3}>
-          {answers.map((answer, index) => {
-            return <Grid item xs={12} className={wrapperDiv} key={index}>
-              <FormControlLabel
-                control={
-                  <Radio
-                    checked={selectedEnabled === index}
-                    onChange={() => setSelectedEnabled(index)}
-                    value={index}
-                    icon={
-                      <FiberManualRecord
-                        className={classes.radioUnchecked}
-                      />
-                    }
-                    checkedIcon={
-                      <FiberManualRecord className={classes.radioChecked} />
-                    }
-                    classes={{
-                      checked: classes.radio
-                    }}
-                  />
-                }
-                classes={{
-                  label: classes.label
-                }}
-                label={`${String.fromCharCode(index + 65)}. ${answer}`}
-              /></Grid>;
-          })}
+          <RadioGroup onChange={(event) => onChangeHandler(event)}>
+            {answers.map((answer, index) => {
+              return <Grid item xs={12} className={wrapperDiv} key={index}>
+                <FormControlLabel
+                  value={answer}
+                  control={
+                    <Radio
+                      checked={selectedEnabled === index}
+                      onChange={() => setSelectedEnabled(index)}
+                      icon={
+                        <FiberManualRecord
+                          className={classes.radioUnchecked}
+                        />
+                      }
+                      checkedIcon={
+                        <FiberManualRecord className={classes.radioChecked} />
+                      }
+                      classes={{
+                        checked: classes.radio
+                      }}
+                    />
+                  }
+                  classes={{
+                    label: classes.label
+                  }}
+                  label={`${String.fromCharCode(index + 65)}. ${answer}`}
+                /></Grid>;
+            })}
+          </RadioGroup>
         </Grid>
       </CardBody>
     </Card>
