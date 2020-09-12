@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // nodejs library to set properties for components
@@ -31,12 +31,30 @@ const styles = {
   ...radioStyles
 };
 
-const useStyles = makeStyles(styles);
+const useStyles = makeStyles((theme) => ({
+  answer: {
+    padding: theme.spacing(1),
+  },...styles
+}));
 
 export default function QuestionCard(props) {
   const classes = useStyles();
   const { userAnswersRef, question_id, description, picture_link, answers, index } = props;
   const [selectedEnabled, setSelectedEnabled] = useState();
+
+  useEffect(() => {
+    if(userAnswersRef.current){
+      const currentUserAnswer = userAnswersRef.current.filter((userAnswer) => {
+        return userAnswer.question_id === question_id;
+      });
+      if(currentUserAnswer.length > 0){
+        const answerIndex = answers.indexOf(currentUserAnswer[0].answer);
+        if(answerIndex>-1){
+          setSelectedEnabled(answerIndex);
+        }
+      }
+    }
+  }, [answers]);
 
   const wrapperDiv = classNames(
     classes.checkboxAndRadio,
@@ -70,10 +88,10 @@ export default function QuestionCard(props) {
               alt="Card-img-cap"
             />}</Grid>
         </Grid>
-        <Grid container spacing={3}>
+        <Grid container alignItems="stretch" spacing={3}>
           <RadioGroup onChange={(event) => onChangeHandler(event)}>
             {answers.map((answer, index) => {
-              return <Grid item xs={12} className={wrapperDiv} key={index}>
+              return <Grid item xs={12} className={wrapperDiv, classes.answer} key={index}>
                 <FormControlLabel
                   value={answer}
                   control={
