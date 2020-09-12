@@ -17,16 +17,27 @@ async function amountOrder() {
 }
 
 router.get('/', async function createPaymentIntent(req, res, next) {
+    console.log(1)
+    // const customer = await stripe.customers.create();
     try {
         let test_amount = await amountOrder();
-        const paymentIntent = await stripe.paymentIntents.create({
+        // const customer = await stripe.customers.create({
+        //     email: 'jenny.rosen@example.com',
+        //     id: req.uid,
+        //     payment_method: 'card',
+        //     invoice_settings: {
+        //         default_payment_method: 'pm_1FWS6ZClCIKljWvsVCvkdyWg',
+        //     },
+        // });
+        const paymentIntent = await 
+        stripe.paymentIntents.create({
             amount: test_amount,
             currency: 'usd',
             payment_method_types: ['card'],
             // Verify your integration in this guide by including this parameter
-            metadata: { integration_check: 'accept_a_payment' },
-        });
-        console.log(paymentIntent)
+            metadata: { integration_check: 'accept_a_payment', userId:123 },
+        })
+        console.log(paymentIntent);
         const response = {
             'client_secret': paymentIntent.client_secret,
         };

@@ -1,5 +1,4 @@
 const {queryPostgres} = require('../../postresql_client');
-
 async function getCorrectAnswers(submission, testId){
     const userQuestion = submission.map((answer)=>answer.questionId).toString();
     const queryString = `SELECT * FROM questions WHERE test_id='${testId}' AND question_id IN (${userQuestion});`;
