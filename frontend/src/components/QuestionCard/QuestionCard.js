@@ -35,9 +35,8 @@ const useStyles = makeStyles(styles);
 
 export default function QuestionCard(props) {
   const classes = useStyles();
-  const { question_id, description, picture_link, answers, index } = props;
+  const { userAnswersRef, question_id, description, picture_link, answers, index } = props;
   const [selectedEnabled, setSelectedEnabled] = useState();
-  const [answer, setAnswer] = useState({ "questionId": question_id, "answer": "" });
 
   const wrapperDiv = classNames(
     classes.checkboxAndRadio,
@@ -46,7 +45,14 @@ export default function QuestionCard(props) {
   );
 
   const onChangeHandler = (event) => {
-    setAnswer({ "questionId": question_id, "answer": event.currentTarget.value });
+    const userAnswers = userAnswersRef.current;
+    const newUserAnswers = userAnswers.map((answer) => {
+      if (question_id === answer.question_id) {
+        answer.answer = event.currentTarget.value;
+      }
+      return answer;
+    });
+    userAnswersRef.current = newUserAnswers;
   };
 
   return (
@@ -107,4 +113,5 @@ QuestionCard.propTypes = {
   picture_link: PropTypes.string,
   answers: PropTypes.array,
   activeStep: PropTypes.number,
+  userAnswersRef: PropTypes.object,
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { auth } from "firebase.js";
 import axios from 'axios';
 // @material-ui/core components
@@ -14,34 +14,14 @@ import QuestionCard from "components/QuestionCard/QuestionCard";
 const client = axios.create({
   baseURL: 'http://localhost:5000',
   json: true
-})
-
-function shuffle(array) {
-  if (array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-  }
-
-  return array;
-}
+});
 
 export default function QuestionsSection(props) {
   const theme = useTheme();
   const { testId } = props;
   const [questions, setQuestions] = useState([]);
   const [activeStep, setActiveStep] = useState(0);
+  const userAnswersRef = useRef();
   const maxSteps = questions.length;
 
   useEffect(() => {
@@ -58,6 +38,12 @@ export default function QuestionsSection(props) {
           });
           const questions = response.data["questions"];
           setQuestions(questions);
+          userAnswersRef.current = questions.map((question) => {
+            return {
+              'question_id': question.question_id,
+              'answer': '',
+            }
+          });
         } catch (error) {
           console.log(error);
         }
@@ -81,10 +67,11 @@ export default function QuestionsSection(props) {
           questionIndex === activeStep ?
             <Grid item xs={12} key={questionIndex} >
               <QuestionCard
+                userAnswersRef={userAnswersRef}
                 picture_link={question.picture_link}
                 description={question.description}
                 question_id={question.question_id}
-                answers={shuffle(question.answers)}
+                answers={question.answers}
                 index={questionIndex + 1}>
               </QuestionCard>
             </Grid> : ""
