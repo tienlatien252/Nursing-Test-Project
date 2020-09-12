@@ -10,6 +10,7 @@ import AboutPage from "views/AboutPage/AboutPage";
 import LoginPage from "views/LoginPage/LoginPage";
 import ProfilePage from "views/ProfilePage/ProfilePage";
 import TestingPage from "views/TestingPage/TestingPage";
+import QuestionsPage from "views/QuestionsPage/QuestionsPage";
 import PurchaseTestPage from "views/PurchaseTestPage/PurchaseTestPage";
 import PasswordResetPage from "views/LoginPage/PasswordResetPage";
 
@@ -26,7 +27,8 @@ export default function App() {
                     <Route path="/purchase-tests" component={PurchaseTestPage} />
                     <Route path="/password-reset" component={PasswordResetPage} />
                     <PrivateRoute path="/profile" component={ProfilePage} />
-                    <PrivateRoute path="/testing" component={TestingPage} />
+                    <PrivateRoute path="/testing" component={TestingPage} exact />
+                    <PrivateRoute path="/testing/:testId/questions" component={QuestionsPage} />
                 </UserProvider>
             </Switch>
         </Router>

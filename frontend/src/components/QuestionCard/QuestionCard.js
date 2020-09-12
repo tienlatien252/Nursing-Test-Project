@@ -4,16 +4,17 @@ import classNames from "classnames";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
 // @material-ui/core components
-import Card from "components/Card/Card.js";
-import CardBody from "components/Card/CardBody.js";
-import CardHeader from "components/Card/CardHeader.js";
+import Card from "components/Card/Card";
+import CardBody from "components/Card/CardBody";
+import CardHeader from "components/Card/CardHeader";
 import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
 import Grid from '@material-ui/core/Grid';
 
 import { makeStyles } from '@material-ui/core/styles';
-import radioStyles from "assets/jss/material-kit-react/customCheckboxRadioSwitch.js";
+import radioStyles from "assets/jss/material-kit-react/customCheckboxRadioSwitch";
 
 // core components
 const styles = {
@@ -34,7 +35,7 @@ const useStyles = makeStyles(styles);
 
 export default function QuestionCard(props) {
   const classes = useStyles();
-  const { question_id, description, picture_link, answers, index } = props;
+  const { userAnswersRef, question_id, description, picture_link, answers, index } = props;
   const [selectedEnabled, setSelectedEnabled] = useState();
 
   const wrapperDiv = classNames(
@@ -42,6 +43,17 @@ export default function QuestionCard(props) {
     classes.checkboxAndRadioHorizontal,
     classes.textAlignLeft
   );
+
+  const onChangeHandler = (event) => {
+    const userAnswers = userAnswersRef.current;
+    const newUserAnswers = userAnswers.map((answer) => {
+      if (question_id === answer.question_id) {
+        answer.answer = event.currentTarget.value;
+      }
+      return answer;
+    });
+    userAnswersRef.current = newUserAnswers;
+  };
 
   return (
     <Card>
@@ -59,33 +71,35 @@ export default function QuestionCard(props) {
             />}</Grid>
         </Grid>
         <Grid container spacing={3}>
-          {answers.map((answer, index) => {
-            return <Grid item xs={12} className={wrapperDiv} key={index}>
-              <FormControlLabel
-                control={
-                  <Radio
-                    checked={selectedEnabled === index}
-                    onChange={() => setSelectedEnabled(index)}
-                    value={index}
-                    icon={
-                      <FiberManualRecord
-                        className={classes.radioUnchecked}
-                      />
-                    }
-                    checkedIcon={
-                      <FiberManualRecord className={classes.radioChecked} />
-                    }
-                    classes={{
-                      checked: classes.radio
-                    }}
-                  />
-                }
-                classes={{
-                  label: classes.label
-                }}
-                label={`${String.fromCharCode(index + 65)}. ${answer}`}
-              /></Grid>;
-          })}
+          <RadioGroup onChange={(event) => onChangeHandler(event)}>
+            {answers.map((answer, index) => {
+              return <Grid item xs={12} className={wrapperDiv} key={index}>
+                <FormControlLabel
+                  value={answer}
+                  control={
+                    <Radio
+                      checked={selectedEnabled === index}
+                      onChange={() => setSelectedEnabled(index)}
+                      icon={
+                        <FiberManualRecord
+                          className={classes.radioUnchecked}
+                        />
+                      }
+                      checkedIcon={
+                        <FiberManualRecord className={classes.radioChecked} />
+                      }
+                      classes={{
+                        checked: classes.radio
+                      }}
+                    />
+                  }
+                  classes={{
+                    label: classes.label
+                  }}
+                  label={`${String.fromCharCode(index + 65)}. ${answer}`}
+                /></Grid>;
+            })}
+          </RadioGroup>
         </Grid>
       </CardBody>
     </Card>
@@ -98,4 +112,6 @@ QuestionCard.propTypes = {
   description: PropTypes.string,
   picture_link: PropTypes.string,
   answers: PropTypes.array,
+  activeStep: PropTypes.number,
+  userAnswersRef: PropTypes.object,
 };
