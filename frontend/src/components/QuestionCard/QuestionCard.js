@@ -54,7 +54,7 @@ export default function QuestionCard(props) {
         }
       }
     }
-  }, [answers]);
+  }, []);
 
   const wrapperDiv = classNames(
     classes.checkboxAndRadio,

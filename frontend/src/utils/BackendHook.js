@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { auth } from "../firebase";
 import axios from 'axios';
 
-const backendBaseURL = process.env.REACT_ENV === 'prod' ? `http://` : 'http://localhost:5000';
+const backendBaseURL = process.env.REACT_ENV === 'prod' ? 'http://backend-service:5000' : 'http://localhost:5000';
 
 export default function useBackendApi(){
     const [data, setData] = useState({});
