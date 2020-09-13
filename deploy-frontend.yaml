@@ -20,8 +20,35 @@ spec:
           - containerPort: 3000
             name: frontend
           env:
-            - name: CI 
+            - name: CI
               value: 'true'
+            - name: REACT_ENV
+              value: 'prod'
+            - name: REACT_APP_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: frontend-secret
+                  key: fb_api_key
+            - name: REACT_APP_PROJECT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: frontend-secret
+                  key: fb_project_id
+            - name: REACT_APP_MESSAGING_SENDER_ID
+              valueFrom:
+                secretKeyRef:
+                  name: frontend-secret
+                  key: fb_sender_id
+            - name: REACT_APP_APP_ID
+              valueFrom:
+                secretKeyRef:
+                  name: frontend-secret
+                  key: fb_app_id
+            - name: REACT_APP_MEASUREMENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: frontend-secret
+                  key: fb_measurement_id
       imagePullSecrets:
         - name: us-gcr-io
 ---
@@ -37,18 +64,18 @@ spec:
     targetPort: 3000
     name: frontend-port
 ---
-  apiVersion: networking.k8s.io/v1beta1
-  kind: Ingress
-  metadata:
-    name: frontend-ingress
-    annotations:
-      kubernetes.io/ingress.class: nginx
-      nginx.ingress.kubernetes.io/rewrite-target: /
-  spec:
-    rules:
-    - http:
-        paths:
-        - path: /
-          backend:
-            serviceName: frontend-service
-            servicePort: 3000
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: frontend-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: frontend-service
+          servicePort: 3000
