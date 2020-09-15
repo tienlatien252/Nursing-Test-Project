@@ -9,18 +9,19 @@ require('dotenv').config();
 
 router.post('/', bodyParser.raw({ type: "*/*" }), async function (request, response) {
     let event;
+    let userID;
     try {
-        //if (request.body.metadata.userId) {
-        // event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
-        event = request.body
-        console.log('event: ', event);
-        //} else {
-        // throw new Error("The payment intent does not have userID");
-        //}
+        if (request.body.metadata.userId) {
+            // event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+            event = request.body;
+            
+        } else {
+            return response.status('Payment Intent does not have userID').end();
+        }
     }
     catch (err) {
         console.log({ message: err.message, Error: err });
-        response.status(400).send(`Webhook Error: ${err.message}`)
+        return response.status('Webhook does not work').end();
     }
     // Handle the event
     switch (event.type) {
