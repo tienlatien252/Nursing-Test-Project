@@ -23,8 +23,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+// app.use(bodyParser.json({
+//   // Because Stripe needs the raw body, we compute it but only when hitting the Stripe callback URL.
+//   verify: function (req, res, buf) {
+//     var url = req.originalUrl;
+//     if (url.startsWith('/stripe-webhooks')) {
+//       req.rawBody = buf.toString()
+//     }
+//   }
+// }));
 
 app.use(cors());
 
@@ -32,6 +39,8 @@ app.use('/', indexRouter);
 app.use('/tests', testsRouter);
 app.use('/auth', authRouter);
 app.use('/stripe-webhook', stripeWebhook);
+// app.use('/stripe-webhook', bodyParser.raw({ type: "*/*" }));
+// app.use(bodyParser.json());
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
