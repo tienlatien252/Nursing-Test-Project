@@ -3,24 +3,25 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const router = express.Router();
 const endpointSecret = process.env.STRIPE_ENDPOINT_SECRET;
-const {queryPostgres} = require('../postresql_client');
+const { queryPostgres } = require('../postresql_client');
 const moment = require('moment');
 require('dotenv').config();
+
 router.post('/', bodyParser.raw({ type: "*/*" }), async function (request, response) {
-    const sig = request.headers['stripe-signature'];
-    console.log('sig test: ',sig);
     let event;
     try {
-        console.log('request Body: ',request.body);
-        console.log('request Raw body: ', request.rawBody);
-        event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
-        // event = request.body
-        console.log('event: ',event);
+        //if (request.body.metadata.userId) {
+        // event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+        event = request.body
+        console.log('event: ', event);
+        //} else {
+        // throw new Error("The payment intent does not have userID");
+        //}
     }
     catch (err) {
         console.log({ message: err.message, Error: err });
         response.status(400).send(`Webhook Error: ${err.message}`)
-    } 
+    }
     // Handle the event
     switch (event.type) {
         case 'payment_intent.succeeded':
@@ -40,7 +41,6 @@ router.post('/', bodyParser.raw({ type: "*/*" }), async function (request, respo
             // Unexpected event type
             return response.status(400).end();
     }
-
     // Return a 200 response to acknowledge receipt of the event
     response.json({ received: true });
 })
