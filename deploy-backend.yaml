@@ -19,6 +19,63 @@ spec:
         ports:
         - containerPort: 5000
           name: backend
+        env:
+          - name: CI
+            value: 'true'
+          - name: NODE_ENV
+            value: 'prod'
+          - name: PRIVATE_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: backend-secret
+                key: fb_private_key_id
+          - name: PRIVATE_KEY
+            valueFrom:
+              secretKeyRef:
+                name: backend-secret
+                key: fb_private_key
+          - name: CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                name: backend-secret
+                key: fb_client_id
+          - name: DATABASE_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: backend-secret
+                key: db_username
+          - name: DATABASE_NAME
+            valueFrom:
+              secretKeyRef:
+                name: backend-secret
+                key: db_name
+          - name: DATABASE_PASS
+            valueFrom:
+              secretKeyRef:
+                name: backend-secret
+                key: db_password
+          - name: STRIPE_SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: backend-secret
+                key: stripe_secret_key
+      - name: cloud-sql-proxy
+        image: gcr.io/cloudsql-docker/gce-proxy:1.17
+        command:
+          - "/cloud_sql_proxy"
+          #- "-ip_address_types=PRIVATE"
+          - "-instances=iron-entropy-285002:us-central1:nursing=tcp:5432"
+          - "-credential_file=/secrets/service_account.json"
+        securityContext:
+          runAsNonRoot: true
+        volumeMounts:
+        - name: sa-secret-volume
+          mountPath: /secrets/
+          readOnly: true
+      volumes:
+        - name: sa-secret-volume
+          secret:
+            secretName: ksa-secret
       imagePullSecrets:
         - name: us-gcr-io
 ---
@@ -45,7 +102,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /
+      - path: /api
         backend:
           serviceName: backend-service
           servicePort: 5000

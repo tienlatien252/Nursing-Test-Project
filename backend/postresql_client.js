@@ -1,7 +1,8 @@
 const { Client } = require('pg');
 require('dotenv').config();
 
-const connectionString = `postgres://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASS}@35.225.81.133/${process.env.DATABASE_NAME}`;
+const DATABASE_HOST = process.env.NODE_ENV === "prod" ? "127.0.0.1" : "35.225.81.133";
+const connectionString = `postgres://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASS}@${DATABASE_HOST}:5432/${process.env.DATABASE_NAME}`;
 var client = new Client({
     connectionString: connectionString
 });
