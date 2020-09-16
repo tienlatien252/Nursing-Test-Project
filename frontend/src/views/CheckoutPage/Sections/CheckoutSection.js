@@ -17,22 +17,40 @@ import styles from "assets/jss/material-kit-react/views/landingPageSections/team
 
 const useStyles = makeStyles(styles);
 
-export default function TestsSection() {
+export default function CheckoutSection(props) {
   const classes = useStyles();
-  const [{ data, isLoading, isError }, setRequest] = useDataApi();
+  const { testId } = props;
+  const [{ data, isLoading, isError }, setTestRequest] = useDataApi();
+  const [tests, setTests] = useState();
+  const [{ paymentIntentData, isPaymentIntentLoading, isPaymentIntentError }, setPaymentIntentRequest] = useDataApi();
 
   useEffect(() => {
-    setRequest({
+    setTestRequest({
       method: 'get',
       path: '/tests'
-    }
-    );
+    });
+
   }, []);
 
+  useEffect(() => {
+    if (!isLoading && data && data.tests) {
+      setTests(data.tests);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (tests) {
+      setPaymentIntentRequest({
+        method: 'get',
+        path: '/auth/paymentIntent'
+      });
+    }
+  }, [tests]);
+
   return (
-    isLoading || !data.tests ? <div className={classes.loading}>
+    !tests ? <div className={classes.loading}>
       <CircularProgress />
-    </div> : data.tests.map((test) =>
+    </div> : data.tests.filter(test => test.test_id === testId).map((test) =>
       <GridItem xs={12} sm={12} md={4} key={test["test_id"]}>
         <Card>
           <CardHeader color="primary" className={classes.CardHeader}>
@@ -49,7 +67,7 @@ export default function TestsSection() {
               pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
               deserunt mollit anim id est laborum."
             </p>
-            <Button simple color="primary" size="lg" href={`/checkout/${test["test_id"]}`}>
+            <Button simple color="primary" size="lg">
               PURCHASE NOW FOR ${test["test_price"]}
             </Button>
           </CardBody>
