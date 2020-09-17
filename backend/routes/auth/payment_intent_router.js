@@ -26,7 +26,6 @@ router.get('/', async function createPaymentIntent(req, res, next) {
             // Verify your integration in this guide by including this parameter
             metadata: { integration_check: 'accept_a_payment', userId: req.uid },
         })
-        console.log(paymentIntent);
         const response = {
             'client_secret': paymentIntent.client_secret,
         };
