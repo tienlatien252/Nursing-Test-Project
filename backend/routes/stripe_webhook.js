@@ -1,4 +1,4 @@
-const stripe = require('stripe')('pk_test_51HHZhMHCXVS0Bcw5gzo4yE1Lhyj6zkvdjcNDL5KlpIDxPUt9tJ6IXsMwwM3R1BfcfDdkyc6UxpIzuEQ1pGffRBQx00wViioYgg');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const bodyParser = require('body-parser');
 const express = require('express');
 const router = express.Router();
@@ -29,8 +29,9 @@ async function testPaymentIntent(paymentSecret) {
     return paymentIntent;
 }
 
-router.post('/', bodyParser.raw({ type: "*/*" }), async function (request, response) {
+router.post('/', bodyParser.raw({ type: 'application/json' }), async function (request, response) {
     const event = request.body;
+    console.log('EVENT BODY : ',event);
     //event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
     try {
         if (!event.data.object) {
@@ -38,13 +39,11 @@ router.post('/', bodyParser.raw({ type: "*/*" }), async function (request, respo
         }
 
         const paymentIntent = event.data.object;
-        // const paymentIntent = await stripe.paymentIntents.retrieve(
-        //     paymentSecret
-        // );
+        
         if (!paymentIntent.metadata || !paymentIntent.metadata.userId) {
             return response.status('Payment Intent does not have userID').end();
         }
-
+        console.log('Payment Intent: ',paymentIntent)
         switch (event.type) {
             case 'payment_intent.succeeded':
                 await addPurchaseInfoToDatabase(paymentIntent);
@@ -65,3 +64,4 @@ router.post('/', bodyParser.raw({ type: "*/*" }), async function (request, respo
 })
 
 module.exports = router;
+
