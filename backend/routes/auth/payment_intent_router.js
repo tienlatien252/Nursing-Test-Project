@@ -25,7 +25,7 @@ router.get('/', async function createPaymentIntent(req, res, next) {
             payment_method_types: ['card'],
             // Verify your integration in this guide by including this parameter
             metadata: { integration_check: 'accept_a_payment', userId: req.uid },
-        })
+        });
         const response = {
             'client_secret': paymentIntent.client_secret,
         };
@@ -34,6 +34,6 @@ router.get('/', async function createPaymentIntent(req, res, next) {
         console.log(`Error in function createPaymentIntent: ${error.message}`);
         return res.status(500).send({ error: 'Something went wrong!' });
     }
-})
+});
 
 module.exports = router;

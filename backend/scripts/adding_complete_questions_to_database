@@ -1,6 +1,5 @@
 Python Script to Insert data to databases:
     file populate_db.py in scripts
-
 CREATE TABLES IN POSTRESQL: 
     CREATE TABLE purchases (
 	test_id BIGINT,
@@ -17,8 +16,6 @@ CREATE TABLES IN POSTRESQL:
     correct_answer TEXT,
     answers TEXT[]
 );
-
-
 
 EXCEL commands:
 Check whether or not  between the ANSWERS columns 
