@@ -1,5 +1,5 @@
 require('dotenv').config();
-const {queryPostgres} = require('../../postresql_client');
+const { queryPostgres } = require('../../postresql_client');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const express = require('express');
 const router = express.Router();
@@ -24,9 +24,8 @@ router.get('/', async function createPaymentIntent(req, res, next) {
             currency: 'usd',
             payment_method_types: ['card'],
             // Verify your integration in this guide by including this parameter
-            metadata: { integration_check: 'accept_a_payment' },
+            metadata: { integration_check: 'accept_a_payment', userId: req.uid },
         });
-        console.log(paymentIntent)
         const response = {
             'client_secret': paymentIntent.client_secret,
         };
@@ -35,6 +34,6 @@ router.get('/', async function createPaymentIntent(req, res, next) {
         console.log(`Error in function createPaymentIntent: ${error.message}`);
         return res.status(500).send({ error: 'Something went wrong!' });
     }
-})
+});
 
 module.exports = router;

@@ -9,7 +9,6 @@ var indexRouter = require('./routes/index');
 var testsRouter = require('./routes/tests');
 var authRouter = require('./routes/auth');
 var stripeWebhook = require('./routes/stripe_webhook');
-
 const cors = require('cors');
 const {client} = require('./postresql_client');
 var app = express();
@@ -24,9 +23,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-
 
 app.use(cors());
 
