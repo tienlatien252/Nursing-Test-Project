@@ -49,7 +49,7 @@ export default function TestsSection() {
               pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
               deserunt mollit anim id est laborum."
             </p>
-            <Button simple color="primary" size="lg">
+            <Button simple color="primary" size="lg" href={`/checkout/${test["test_id"]}`}>
               PURCHASE NOW FOR ${test["test_price"]}
             </Button>
           </CardBody>

@@ -13,6 +13,7 @@ import TestingPage from "views/TestingPage/TestingPage";
 import QuestionsPage from "views/QuestionsPage/QuestionsPage";
 import PurchaseTestPage from "views/PurchaseTestPage/PurchaseTestPage";
 import PasswordResetPage from "views/LoginPage/PasswordResetPage";
+import CheckoutPage from "views/CheckoutPage/CheckoutPage";
 
 import "assets/scss/material-kit-react.scss?v=1.9.0";
 
@@ -29,6 +30,7 @@ export default function App() {
                     <PrivateRoute path="/profile" component={ProfilePage} />
                     <PrivateRoute path="/testing" component={TestingPage} exact />
                     <PrivateRoute path="/testing/:testId/questions" component={QuestionsPage} />
+                    <PrivateRoute path="/checkout/:testId" component={CheckoutPage} />
                 </UserProvider>
             </Switch>
         </Router>
