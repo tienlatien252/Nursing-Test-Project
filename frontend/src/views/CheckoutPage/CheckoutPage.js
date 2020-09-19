@@ -37,7 +37,7 @@ export default function CheckoutPage(props) {
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div className={classes.container}>
                     <div className={classes.section} style={{ textAlign: "center" }}>
-                        <h2 className={classes.title}>Here are our tests</h2>
+                        <h2 className={classes.title}>Checkout</h2>
                         <div>
                             <GridContainer justify="center">
                                 <CheckoutSection testId={params.testId}/>
