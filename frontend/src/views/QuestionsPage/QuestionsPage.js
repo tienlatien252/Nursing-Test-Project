@@ -19,7 +19,7 @@ export default function TestPage({ match }) {
             <AppBar className={classes.appBar} style={{ position: "sticky" }}>
                 <Toolbar style={{ display: "flex" }}>
                     <Button simple size="lg" style={{ marginLeft: "auto" }}>
-                        Submit Test {testId}
+                        Submit
                     </Button>
                 </Toolbar>
             </AppBar>

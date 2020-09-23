@@ -59,8 +59,8 @@ export default function TestsSection() {
                             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
                             deserunt mollit anim id est laborum."
                         </p>
-                        <Link key={test["test_id"]} to={`/testing/${test["test_id"]}/questions`}>
-                            Take {test["test_name"]}
+                        <Link style={{ color: "#5899E2" }} key={test["test_id"]} to={`/testing/${test["test_id"]}/questions`}>
+                            TAKE TEST
                         </Link>
                     </CardBody>
                 </Card>

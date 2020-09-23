@@ -24,7 +24,7 @@ export default function CheckoutPage(props) {
         <div>
             <Header
                 color="transparent"
-                brand="Nursing Test"
+                brand="It's Code Blue"
                 rightLinks={<HeaderLinks />}
                 fixed
                 changeColorOnScroll={{
@@ -33,7 +33,7 @@ export default function CheckoutPage(props) {
                 }}
                 {...rest}
             />
-            <Parallax small filter image={require("assets/img/profile-bg.jpg")} />
+            <Parallax small filter image={require("assets/img/blue.jpg")} />
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div className={classes.container}>
                     <div className={classes.section} style={{ textAlign: "center" }}>

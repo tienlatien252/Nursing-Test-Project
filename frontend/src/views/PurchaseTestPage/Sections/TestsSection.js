@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import useDataApi from "../../../utils/BackendHook";
@@ -19,7 +19,7 @@ const useStyles = makeStyles(styles);
 
 export default function TestsSection() {
   const classes = useStyles();
-  const [{ data, isLoading, isError }, setRequest] = useDataApi();
+  const [{ data, isLoading }, setRequest] = useDataApi();
 
   useEffect(() => {
     setRequest({
