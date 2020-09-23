@@ -35,6 +35,10 @@ export default function LandingPage(props) {
         routes={dashboardRoutes} 
         rightLinks={<HeaderLinks />}
         fixed
+        changeColorOnScroll={{
+          height: 200,
+          color: "white"
+        }}
         {...rest}
       />
       <Parallax filter image={require("assets/img/blue_gloves.jpg")}>

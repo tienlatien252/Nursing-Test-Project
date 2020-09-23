@@ -24,9 +24,13 @@ export default function ProfilePage(props) {
                 brand="It's Code Blue"
                 rightLinks={<HeaderLinks />}
                 fixed
+                changeColorOnScroll={{
+                    height: 200,
+                    color: "white"
+                }}
                 {...rest}
             />
-            <Parallax small filter image={require("assets/img/blue.jpg")} />
+            <Parallax small filter image={require("assets/img/blue_cropped.jpg")} />
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div className={classes.container}>
                     <p>This is the profile page.</p>

@@ -31,7 +31,7 @@ export default function AboutPage(props) {
         }}
         {...rest}
       />
-      <Parallax small filter image={require("assets/img/blue.jpg")} />
+      <Parallax small filter image={require("assets/img/blue_cropped.jpg")} />
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
           <TeamSection />

@@ -19,7 +19,7 @@ import Button from "components/CustomButtons/Button";
 
 import styles from "assets/jss/material-kit-react/views/loginPage";
 
-import image from "assets/img/blue_gradient.jpg";
+import image from "assets/img/blue.jpg";
 
 const useStyles = makeStyles(styles);
 
