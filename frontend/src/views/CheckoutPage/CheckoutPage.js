@@ -27,10 +27,6 @@ export default function CheckoutPage(props) {
                 brand="It's Code Blue"
                 rightLinks={<HeaderLinks />}
                 fixed
-                changeColorOnScroll={{
-                    height: 200,
-                    color: "white"
-                }}
                 {...rest}
             />
             <Parallax small filter image={require("assets/img/blue_cropped.jpg")} />

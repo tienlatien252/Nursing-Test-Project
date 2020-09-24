@@ -35,7 +35,7 @@ export default function TestsSection() {
     </div> : data.tests.map((test) =>
       <GridItem xs={12} sm={12} md={4} key={test["test_id"]}>
         <Card>
-          <CardHeader color="primary" className={classes.CardHeader}>
+          <CardHeader color="secondary" className={classes.CardHeader}>
             <h4>{test["test_name"]}</h4>
           </CardHeader>
           <CardBody>
@@ -49,7 +49,7 @@ export default function TestsSection() {
               pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
               deserunt mollit anim id est laborum."
             </p>
-            <Button simple color="primary" size="lg" href={`/checkout/${test["test_id"]}`}>
+            <Button simple color="secondary" size="lg" href={`/checkout/${test["test_id"]}`}>
               PURCHASE NOW FOR ${test["test_price"]}
             </Button>
           </CardBody>
