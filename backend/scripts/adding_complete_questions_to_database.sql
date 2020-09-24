@@ -1,6 +1,3 @@
-Python Script to Insert data to databases:
-    file populate_db.py in scripts
-
 CREATE TABLES IN POSTRESQL: 
     CREATE TABLE purchases (
 	test_id BIGINT REFERENCES tests(test_id),
