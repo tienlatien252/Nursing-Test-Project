@@ -15,14 +15,14 @@ export default function useBackendApi(){
             setIsError(false);
             setIsLoading(true);
             const {path, method, postBody} = request;
-            var userId = auth.currentUser ? await auth.currentUser.getIdToken(true) : "";
+            var idToken = auth.currentUser ? await auth.currentUser.getIdToken(true) : "";
             
             try {
                 if (path){
                     const response = await axios({
                         url: `${backendBaseURL}${path}`,
                         headers: {
-                            'AuthToken': userId
+                            'AuthToken': idToken
                         },
                         data: postBody,
                         json: true,
