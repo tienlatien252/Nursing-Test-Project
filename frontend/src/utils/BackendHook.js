@@ -8,20 +8,17 @@ export default function useBackendApi(){
     const [data, setData] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
-    const [request, setRequest] = useState({
-        path: '/',
-        method: 'get',
-        postBody: {}
-    });
+    const [request, setRequest] = useState({});
 
     useEffect(() => {
         const requestAPI = async () => {
             setIsError(false);
             setIsLoading(true);
-            if (auth.currentUser) {
-                const idToken = await auth.currentUser.getIdToken(true);
-                const {path, method, postBody} = request;
-                try {
+            const {path, method, postBody} = request;
+            var idToken = auth.currentUser ? await auth.currentUser.getIdToken(true) : "";
+            
+            try {
+                if (path){
                     const response = await axios({
                         url: `${backendBaseURL}${path}`,
                         headers: {
@@ -32,12 +29,12 @@ export default function useBackendApi(){
                         method: method
                     });
                     setData(response.data);
-                    setIsLoading(false);
-                } catch (error) {
-                    console.log(error);
-                    setIsError(true);
                 }
+            } catch (error) {
+                console.log(error);
+                setIsError(true);
             }
+
             setIsLoading(false);
         };
 

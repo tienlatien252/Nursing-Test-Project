@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import useDataApi from "../../../utils/BackendHook";
+import useDataApi from "utils/BackendHook";
 
 // @material-ui/icons
 
