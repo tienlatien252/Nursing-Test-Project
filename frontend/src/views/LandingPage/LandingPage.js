@@ -30,18 +30,14 @@ export default function LandingPage(props) {
   return (
     <div>
       <Header
-        color="transparent"
-        brand="Nursing Test"
+        color="primary"
+        brand="It's Code Blue"
         routes={dashboardRoutes} 
         rightLinks={<HeaderLinks />}
         fixed
-        changeColorOnScroll={{
-          height: 400,
-          color: "white"
-        }}
         {...rest}
       />
-      <Parallax filter image={require("assets/img/landing-bg.jpg")}>
+      <Parallax filter image={require("assets/img/blue_gloves.jpg")}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>

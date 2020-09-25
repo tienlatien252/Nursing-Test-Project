@@ -16,7 +16,9 @@ import CardFooter from "components/Card/CardFooter";
 
 import styles from "assets/jss/material-kit-react/views/landingPageSections/teamStyle";
 
-import team2 from "assets/img/faces/christian.jpg";
+import Tung from "assets/img/faces/Tung.jpg";
+import An from "assets/img/faces/An.jpg";
+import Linh from "assets/img/faces/Linh.jpg";
 
 const useStyles = makeStyles(styles);
 
@@ -35,7 +37,7 @@ export default function TeamSection() {
           <GridItem xs={12} sm={12} md={4}>
             <Card plain>
               <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
-                <img src={team2} alt="..." className={imageClasses} />
+                <img src={Tung} alt="..." className={imageClasses} />
               </GridItem>
               <h4 className={classes.cardTitle}>
                 Tung Nguyen
@@ -68,7 +70,7 @@ export default function TeamSection() {
           <GridItem xs={12} sm={12} md={4}>
             <Card plain>
               <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
-                <img src={team2} alt="..." className={imageClasses} />
+                <img src={An} alt="..." className={imageClasses} />
               </GridItem>
               <h4 className={classes.cardTitle}>
                 An Vo
@@ -101,7 +103,7 @@ export default function TeamSection() {
           <GridItem xs={12} sm={12} md={4}>
             <Card plain>
               <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
-                <img src={team2} alt="..." className={imageClasses} />
+                <img src={Linh} alt="..." className={imageClasses} />
               </GridItem>
               <h4 className={classes.cardTitle}>
                 Linh Vo

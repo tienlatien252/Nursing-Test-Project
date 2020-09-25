@@ -19,7 +19,7 @@ import Button from "components/CustomButtons/Button";
 
 import styles from "assets/jss/material-kit-react/views/loginPage";
 
-import image from "assets/img/bg7.jpg";
+import image from "assets/img/blue.jpg";
 
 const useStyles = makeStyles(styles);
 
@@ -56,7 +56,7 @@ export default function PasswordResetPage(props) {
             <Header
                 absolute
                 color="transparent"
-                brand="Nursing Test"
+                brand="It's Code Blue"
                 rightLinks={<HeaderLinks />}
                 {...rest}
             />
