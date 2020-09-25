@@ -15,7 +15,7 @@ import SignUp from "./Sections/SignUp";
 
 import styles from "assets/jss/material-kit-react/views/loginPage";
 
-import image from "assets/img/bg7.jpg";
+import image from "assets/img/blue.jpg";
 
 const useStyles = makeStyles(styles);
 
@@ -33,7 +33,7 @@ export default function LoginPage(props) {
       <Header
         absolute
         color="transparent"
-        brand="Nursing Test"
+        brand="It's Code Blue"
         rightLinks={<HeaderLinks />}
         {...rest}
       />
