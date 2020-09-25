@@ -12,7 +12,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import QuestionCard from "components/QuestionCard/QuestionCard";
 
-import useDataApi from "../../../utils/BackendHook";
+import useDataApi from "utils/BackendHook";
 
 const useStyles = makeStyles((theme) => ({
   loading: {

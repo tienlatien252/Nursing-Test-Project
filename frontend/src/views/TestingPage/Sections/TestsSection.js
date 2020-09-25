@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import useDataApi from "../../../utils/BackendHook";
+import useDataApi from "utils/BackendHook";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 // core components
