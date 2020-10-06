@@ -33,9 +33,11 @@ export default function CheckoutSection(props) {
 
   useEffect(() => {
     if (tests) {
+      const postBody = {"tests": [{"testId": testId}]};
       setRequest({
-        method: 'get',
-        path: '/auth/paymentIntent'
+        method: 'post',
+        path: '/auth/paymentIntent',
+        postBody: postBody
       });
     }
   }, [tests]);
