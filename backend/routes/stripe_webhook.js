@@ -10,10 +10,15 @@ require('dotenv').config();
 async function addPurchaseInfoToDatabase(paymentIntent) {
     try {
         const userId = paymentIntent.metadata.userId;
+        const testIds = paymentIntent.metadata.tests.split(',');
         const purchase_time_stamp = moment(paymentIntent.created * 1000).format("YYYY-MM-DD HH:mm:ss");
         const expire_time_stamp = moment(paymentIntent.created * 1000).add(12, 'month').format("YYYY-MM-DD HH:mm:ss");
-        const queryString = `INSERT INTO purchases(test_id , user_id, purchase_time, expire_time) VALUES ( 1, '${userId}' , '${purchase_time_stamp}','${expire_time_stamp}')`;
-        await queryPostgres(queryString);
+        
+        testIds.forEach(async function(testId){
+            const queryString = `INSERT INTO purchases(test_id , user_id, purchase_time, expire_time) VALUES ( ${testId}, '${userId}' , '${purchase_time_stamp}','${expire_time_stamp}')`;
+            await queryPostgres(queryString);    
+        });
+
         console.log('PaymentIntent was successful!');
     } catch (error) {
         console.log(`Error when insert purchase to database : ${error.message}`);
@@ -23,13 +28,12 @@ async function addPurchaseInfoToDatabase(paymentIntent) {
 
 router.post('/', bodyParser.raw({ type: 'application/json' }), async function (request, response) {
     const event = request.body;
-    //event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
     try {
         if (!event.data.object) {
             return response.status('Event does not have correct data').end();
         }
         const paymentIntent = event.data.object;
-        if (!paymentIntent.metadata || !paymentIntent.metadata.userId) {
+        if (!paymentIntent.metadata || !paymentIntent.metadata.userId || !paymentIntent.metadata.tests) {
             return response.status('Payment Intent does not have userID').end();
         }
         switch (event.type) {
